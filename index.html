@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Weather App</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div class="search-menu">
@@ -12,24 +13,42 @@
     <button type="submit" id="submitButton">Check weather</button>
   </div>
   <div class="weather-app">
-    <div class="current-weather__main">
-      <div class="current-weather__icon"></div>
-      <div class="current-weather__details">
-        <span class="current-weather__details--city"></span>
-        <div class="current-weather__details--date">
-          <span class="current-weather__day">monday</span>
-          <span class="current-weather__month">18</span>
-          <span class="current-weather__time">13:01</span>
+    <div class="weather__wrapper">
+      <div class="weather__details">
+        <span class="weather__details--city"></span>
+        <div class="weather__details--date">
+          <span class="weather__day">monday</span>
+          <span class="weather__month">18</span>
+          <span class="weather__time">13:01</span>
         </div>
-        <span class="current-weather__details--temp">21</span>
-        <span class="current-weather__details--desc">sunny</span>
       </div>
+      <div class="weather__main">
+        <div class="weather__icon">IKONA TUTAJ</div>
+        <div class="weather__info">
+          <span class="weather__temp">21</span>
+          <span class="weather__desc">sunny</span>
+        </div>
+      </div>
+      <ul class="weather__additional">
+        <li class="weather__list-item">
+          <span>sunrise<strong class="weather__sunrise">7:01</strong>am</span>
+        </li>
+        <li class="weather__list-item">
+          <span>sunset<strong class="weather__sunset">6:20</strong>pm</span>
+        </li>
+        <li class="weather__list-item">
+          <span>humidity<strong class="weather__humidity">40</strong>&percnt;</span>
+        </li>
+        <li class="weather__list-item">
+          <span>pressure<strong class="weather__pressure">1001</strong>hPh</span>
+        </li>
+      </ul>
     </div>
     <div class="forecast">
       <ul class="forecast__detailed">
         <li class="forecast__daily-box">
           <span class="forecast__day">THU</span>
-          <span class="forecast__icon"></span>
+          <span class="forecast__icon">OOO</span>
           <span class="forecast__temp">
             <span class="forecast__temp--morning">3</span>
             <span class="forecast__temp--day">16</span>
@@ -38,7 +57,7 @@
         </li>
         <li class="forecast__daily-box">
           <span class="forecast__day">THU</span>
-          <span class="forecast__icon"></span>
+          <span class="forecast__icon">OOO</span>
           <span class="forecast__temp">
             <span class="forecast__temp--morning">3</span>
             <span class="forecast__temp--day">16</span>
@@ -47,26 +66,30 @@
         </li>
         <li class="forecast__daily-box">
           <span class="forecast__day">THU</span>
-          <span class="forecast__icon"></span>
+          <span class="forecast__icon">OOO</span>
           <span class="forecast__temp">
             <span class="forecast__temp--morning">3</span>
             <span class="forecast__temp--day">16</span>
             <span class="forecast__temp--evening">9</span>
           </span>
         </li>
-      </ul>
-      <ul class="forecast__description">
-        <li>
-          <span>sunrise<strong class="forecast__sunrise">7:01</strong>am</span>
+        <li class="forecast__daily-box">
+          <span class="forecast__day">THU</span>
+          <span class="forecast__icon">OOO</span>
+          <span class="forecast__temp">
+            <span class="forecast__temp--morning">3</span>
+            <span class="forecast__temp--day">16</span>
+            <span class="forecast__temp--evening">9</span>
+          </span>
         </li>
-        <li>
-          <span>sunset<strong class="forecast__sunset">6:20</strong>pm</span>
-        </li>
-        <li>
-          <span>humidity<strong class="forecast__humidity">40</strong>&percnt;</span>
-        </li>
-        <li>
-          <span>pressure<strong class="forecast__pressure">1001</strong>hPh</span>
+        <li class="forecast__daily-box">
+          <span class="forecast__day">THU</span>
+          <span class="forecast__icon">OOO</span>
+          <span class="forecast__temp">
+            <span class="forecast__temp--morning">3</span>
+            <span class="forecast__temp--day">16</span>
+            <span class="forecast__temp--evening">9</span>
+          </span>
         </li>
       </ul>
     </div>

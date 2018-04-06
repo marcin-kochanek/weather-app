@@ -16,14 +16,14 @@
   const currentMM = today.getMinutes();
   const currentTime = `${addZero(currentHH)}:${addZero(currentMM)}`;
 
-  document.querySelector('.current-weather__day').innerHTML = currentDay;
-  document.querySelector('.current-weather__month').innerHTML = `${currentMonth} ${currentDate}`;
-  document.querySelector('.current-weather__time').innerHTML = currentTime;
+  document.querySelector('.weather__day').innerHTML = currentDay;
+  document.querySelector('.weather__month').innerHTML = `${currentMonth} ${currentDate}`;
+  document.querySelector('.weather__time').innerHTML = currentTime;
 }());
 
 function assignTemp(nodeEle, tempsArr) {
   nodeEle.forEach((el, index) => {
-    el.innerHTML = tempsArr[index];
+    el.innerHTML = `${tempsArr[index]}°`;
   });
 }
 
@@ -75,20 +75,21 @@ const getAverageTemp = function(arr, h1, h2, h3) {
 
 function getWeather() {
   const cityName = document.getElementById('cityName').value;
-  const currentTemp = document.querySelector('.current-weather__details--temp');
-  const currentDesc = document.querySelector('.current-weather__details--desc');
-  const sunrise = document.querySelector('.forecast__sunrise');
-  const sunset = document.querySelector('.forecast__sunset');
-  const humidity = document.querySelector('.forecast__humidity');
-  const pressure = document.querySelector('.forecast__pressure');
+  const currentTemp = document.querySelector('.weather__temp');
+  const currentDesc = document.querySelector('.weather__desc');
+  const sunrise = document.querySelector('.weather__sunrise');
+  const sunset = document.querySelector('.weather__sunset');
+  const humidity = document.querySelector('.weather__humidity');
+  const pressure = document.querySelector('.weather__pressure');
+  const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
-  document.querySelector('.current-weather__details--city').innerHTML = cityName;
+  document.querySelector('.weather__details--city').innerHTML = cityName;
 
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=4876b17d9f9309045bb04bc91a1f6446`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`)
     .then((res) => res.json())
     .then((data) => {
       currentTemp.innerHTML = `${data.main.temp.toFixed(1)}°C`;
-      currentDesc.innerHTML = data.weather[0].main;
+      currentDesc.innerHTML = data.weather[0].description;
       sunrise.innerHTML = convertUTC(data.sys.sunrise);
       sunset.innerHTML = convertUTC(data.sys.sunset);
       humidity.innerHTML = data.main.humidity;
@@ -102,8 +103,9 @@ function getWeatherForecast() {
   const morningTempEle = document.querySelectorAll('.forecast__temp--morning');
   const dayTempEle = document.querySelectorAll('.forecast__temp--day');
   const eveningTempEle = document.querySelectorAll('.forecast__temp--evening');
+  const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=4876b17d9f9309045bb04bc91a1f6446`)
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`)
     .then((res) => res.json())
     .then((data) => {
       let morningTemperatures;
@@ -115,10 +117,14 @@ function getWeatherForecast() {
       forecastDays[0] = filterForecast(data, today, 1);
       forecastDays[1] = filterForecast(data, today, 2);
       forecastDays[2] = filterForecast(data, today, 3);
+      forecastDays[3] = filterForecast(data, today, 4);
+      forecastDays[4] = filterForecast(data, today, 5);
+
+      console.log(forecastDays[0]);
 
       // systematic temperature recording
       morningTemperatures = getAverageTemp(forecastDays, 3, 6, 9);
-      dayTemperatures = getAverageTemp(forecastDays, 6, 12, 18);
+      dayTemperatures = getAverageTemp(forecastDays, 9, 12, 15);
       eveningTemperatures = getAverageTemp(forecastDays, 18, 21, 0);
 
       assignTemp(morningTempEle, morningTemperatures);

@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #E5E3E0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-menu {
+  /*height: 80vh;
+  width: 80vw;*/
+}
+.weather-app {
+  height: 80vh;
+  width: 70vw;
+  border-radius: 10px 0;
+}
+
+.weather__wrapper {
+  background-color: #FCF3D2;
+  color: #DE7C4D;
+  height: 70%;
+  border-radius: 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.weather__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.weather__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather__additional {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.weather__list-item {
+  display: inline-block;
+}
+
+.forecast {
+  height: 30%;
+}
+
+.forecast__detailed {
+  list-style: none;
+  height: 100%;
+  background-color: #fff;
+
+  display: flex;
+  align-items: stretch;
+  /*justify-content: space-around;*/
+}
+
+.forecast__daily-box {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #0C345E;
+  border-right: 1px solid #B5C2C7;
+  border-top: 1px solid #B5C2C7;
+  border-bottom: 1px solid #B5C2C7;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.forecast__day {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.forecast__icon {
+
+}
+
+.forecast__temp--day {
+  font-size: 20px;
+}
