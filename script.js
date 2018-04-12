@@ -11,14 +11,15 @@
   const currentDay = WEEK_DAYS[today.getDay()-1]; //monday is 0!
   const currentDate = today.getDate();
   const currentMonth = MONTHS[today.getMonth()];
+  const currentYear = today.getFullYear();
 
   const currentHH = today.getHours();
   const currentMM = today.getMinutes();
   const currentTime = `${addZero(currentHH)}:${addZero(currentMM)}`;
 
-  document.querySelector('.weather__day').innerHTML = currentDay;
-  document.querySelector('.weather__month').innerHTML = `${currentMonth} ${currentDate}`;
   document.querySelector('.weather__time').innerHTML = currentTime;
+  document.querySelector('.weather__week-day').innerHTML = currentDay;
+  document.querySelector('.weather__full-date').innerHTML = `${currentMonth} ${currentDate}, ${currentYear}`;
 }());
 
 function assignTemp(nodeEle, tempsArr) {
@@ -77,13 +78,13 @@ function getWeather() {
   const cityName = document.getElementById('cityName').value;
   const currentTemp = document.querySelector('.weather__temp');
   const currentDesc = document.querySelector('.weather__desc');
-  const sunrise = document.querySelector('.weather__sunrise');
-  const sunset = document.querySelector('.weather__sunset');
-  const humidity = document.querySelector('.weather__humidity');
-  const pressure = document.querySelector('.weather__pressure');
+  const sunrise = document.querySelector('.details__sunrise');
+  const sunset = document.querySelector('.details__sunset');
+  const humidity = document.querySelector('.details__humidity');
+  const pressure = document.querySelector('.details__pressure');
   const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
-  document.querySelector('.weather__details--city').innerHTML = cityName;
+  document.querySelector('.weather__info--city').innerHTML = cityName;
 
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`)
     .then((res) => res.json())

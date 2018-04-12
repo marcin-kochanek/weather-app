@@ -1,45 +1,57 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600');
+
 * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 body {
   background-position: center;
   background-repeat: no-repeat;
   font-family: 'Montserrat', sans-serif;
   background-color: #E5E3E0;
+
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .weather-app {
   height: 80vh;
   width: 70vw;
   border-radius: 10px 0;
   text-transform: uppercase;
-  display: flex; }
+
+  display: flex;
+}
 
 .weather {
   background-color: #FCF3D2;
   color: #DE7C4D;
   width: 40%;
   border-radius: 10px 0;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
-  .weather__search {
+  justify-content: space-between;
+
+  &__search {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+  }
+}
 
 .weather__search-icon {
   display: flex;
-  align-items: center; }
+  align-items: center;
+}
 
 .weather__date {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  align-items: flex-end;
+}
 
 /*.weather__today {
   height: 100%;
@@ -48,49 +60,59 @@ body {
   flex-direction: column;
   justify-content: space-around;
 }*/
+
 .weather__icon {
-  text-align: center; }
+  text-align: center;
+}
 
 .weather__info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; }
+  align-items: flex-start;
+}
 
 .detailed-forecast {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+}
 
 .weather__details {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .weather__current {
   display: flex;
   justify-content: space-evenly;
-  align-items: center; }
+  align-items: center;
+}
 
 .weather__additional {
   list-style: none;
   display: flex;
   justify-content: space-around;
-  padding: 15px 0; }
+  padding: 15px 0;
+}
 
 .weather__list-item {
-  display: inline-block; }
+  display: inline-block;
+}
 
 .forecast {
   height: 30%;
   background-color: #fff;
   background-color: #EDD39F;
   color: #0C345E;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
 .forecast__heading {
   font-weight: 500;
   position: relative;
   text-align: center;
-  padding: 10px 0; }
+  padding: 10px 0;
+}
 
 .forecast__heading::before,
 .forecast__heading::after {
@@ -100,38 +122,50 @@ body {
   width: 30px;
   height: 1px;
   background-color: #0C345E;
-  top: 50%; }
+  top: 50%;
+}
 
 .forecast__heading::before {
   left: auto;
-  margin-left: -38px; }
+  margin-left: -38px;
+}
 
 .forecast__heading::after {
   left: auto;
-  margin-left: 10px; }
+  margin-left: 10px;
+}
 
 .forecast__detailed {
   list-style: none;
   height: 100%;
   background-color: #fff;
+
   padding-top: 15px;
   display: flex;
   align-items: stretch;
-  /*justify-content: space-around;*/ }
+  /*justify-content: space-around;*/
+}
 
 .forecast__daily-box {
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(to bottom, rgba(238, 202, 129, 0.836), #eed29b);
+  background-image: linear-gradient(
+    to bottom, 
+    rgba(238, 202, 129, 0.836), 
+    rgb(238, 210, 155));
   display: inline-flex;
   font-weight: 500;
+
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; }
+  justify-content: space-around;
+}
 
 .forecast__day {
   font-size: 14px;
-  font-weight: 600; }
+  font-weight: 600;
+}
 
 .forecast__temp--day {
-  font-size: 20px; }
+  font-size: 20px;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "Weather app using API",
+  "scripts": {
+    "watch:sass": "node-sass main.scss style.css -w",
+    "devserver": "live-server",
+    "dev:start": "npm-run-all --parallel devserver watch:sass",
+
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 version\" style.css -o style.prefix.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcin-kochanek/weather-app.git"
+  },
+  "author": "Marcin",
+  "license": "ISC",
+  "homepage": "https://github.com/marcin-kochanek/weather-app#readme",
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "node-sass": "^4.8.3",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^5.0.0"
+  }
+}
