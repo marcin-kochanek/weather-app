@@ -1,5 +1,6 @@
 (function getCurrentDate() {
   const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
+  //const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
   const MONTHS = [`jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`];
 
   const addZero = (current) => {
@@ -7,7 +8,6 @@
   };
 
   const today = new Date();
-  console.log(today);
   const currentDay = WEEK_DAYS[today.getDay()-1]; //monday is 0!
   const currentDate = today.getDate();
   const currentMonth = MONTHS[today.getMonth()];
@@ -15,11 +15,11 @@
 
   const currentHH = today.getHours();
   const currentMM = today.getMinutes();
-  const currentTime = `${addZero(currentHH)}:${addZero(currentMM)}`;
+  const currentTime = `${addZero(currentHH)} : ${addZero(currentMM)}`;
 
   document.querySelector('.weather__time').innerHTML = currentTime;
-  document.querySelector('.weather__week-day').innerHTML = currentDay;
-  document.querySelector('.weather__full-date').innerHTML = `${currentMonth} ${currentDate}, ${currentYear}`;
+  document.querySelector('.weather__week-day').innerHTML = `${currentDay}, `;
+  document.querySelector('.weather__full-date').innerHTML = `${currentMonth} ${currentDate}`;
 }());
 
 function assignTemp(nodeEle, tempsArr) {
@@ -67,7 +67,7 @@ const getAverageTemp = function(arr, h1, h2, h3) {
       return (sum + elem.main.temp);
     },0);
 
-    avgTempArr.push((tempSum/3).toFixed(1));
+    avgTempArr.push((tempSum/3).toFixed());
     //return ((tempSum/3).toFixed(1));
   });
 
@@ -76,8 +76,8 @@ const getAverageTemp = function(arr, h1, h2, h3) {
 
 function getWeather() {
   const cityName = document.getElementById('cityName').value;
-  const currentTemp = document.querySelector('.weather__temp');
-  const currentDesc = document.querySelector('.weather__desc');
+  const currentTemp = document.querySelector('.weather__info--temp');
+  const currentDesc = document.querySelector('.weather__info--desc');
   const sunrise = document.querySelector('.details__sunrise');
   const sunset = document.querySelector('.details__sunset');
   const humidity = document.querySelector('.details__humidity');
@@ -89,7 +89,7 @@ function getWeather() {
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`)
     .then((res) => res.json())
     .then((data) => {
-      currentTemp.innerHTML = `${data.main.temp.toFixed(1)}°C`;
+      currentTemp.innerHTML = `${data.main.temp.toFixed()}<span class='degree-symbol'>°</span>`;
       currentDesc.innerHTML = data.weather[0].description;
       sunrise.innerHTML = convertUTC(data.sys.sunrise);
       sunset.innerHTML = convertUTC(data.sys.sunset);
