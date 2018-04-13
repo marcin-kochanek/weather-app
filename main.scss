@@ -50,7 +50,7 @@ body {
 }
 
 .search-menu {
-  display: none;
+  //display: none;
 }
 
 .weather {
@@ -95,7 +95,7 @@ body {
   }
 
   &__icon svg {
-    fill: currentColor;
+    margin-top: 2rem;
   }
 
   &__info {

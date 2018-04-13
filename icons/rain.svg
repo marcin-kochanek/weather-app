@@ -1,0 +1,42 @@
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+ <g>
+  <title>back</title>
+  <rect id="svg_19" height="271" width="390" y="0" x="2" stroke="#000000" fill="#2a3259"/>
+ </g>
+ <g>
+  <title>cloud</title>
+  <g fill-opacity="0.9" id="svg_10" stroke="null">
+   <ellipse fill="#3f3f3f" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="187" cy="138" rx="145" ry="62" id="svg_2" stroke="#000000"/>
+   <ellipse fill="#3f3f3f" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="256.5" cy="131" rx="77.5" ry="61.5" id="svg_4" stroke="#000000"/>
+   <ellipse fill="#3f3f3f" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="173" cy="105.5" rx="75.5" ry="66.5" id="svg_5" stroke="#000000"/>
+   <ellipse fill="#3f3f3f" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="115" cy="107.5" rx="77.5" ry="61.5" id="svg_7" stroke="#000000"/>
+   <ellipse fill="#3f3f3f" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="110" cy="123.50001" rx="77.5" ry="61.5" id="svg_9" stroke="#000000"/>
+  </g>
+  <g id="svg_36">
+   <line id="svg_23" y2="254" x2="83" y1="224" x1="98" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_24" y2="263.5" x2="285.5" y1="233.5" x1="300.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_25" y2="263.5" x2="285.5" y1="233.5" x1="300.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_27" y2="263.5" x2="285.5" y1="233.5" x1="300.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_28" y2="251.25" x2="190.75" y1="221.25" x1="205.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_29" y2="266.75" x2="157.25" y1="236.75" x1="172.25" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_30" y2="266.75" x2="226.25" y1="236.75" x1="241.25" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_31" y2="256.75" x2="124.25" y1="226.75" x1="139.25" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_33" y2="255.25" x2="254.75" y1="225.25" x1="269.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_34" y2="255.25" x2="254.75" y1="225.25" x1="269.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+   <line id="svg_35" y2="255.25" x2="254.75" y1="225.25" x1="269.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#0d9696" fill="none"/>
+  </g>
+ </g>
+ <g display="inline">
+  <title>cloud2</title>
+  <g id="svg_20">
+   <ellipse id="svg_14" fill="#d4e6f9" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="213.75" cy="166" rx="145" ry="62" stroke="#000000"/>
+   <ellipse id="svg_15" fill="#d4e6f9" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="283.25" cy="159" rx="77.5" ry="61.5" stroke="#000000"/>
+   <ellipse id="svg_16" fill="#d4e6f9" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="199.75" cy="133.5" rx="75.5" ry="66.5" stroke="#000000"/>
+   <ellipse id="svg_17" fill="#d4e6f9" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="141.75" cy="135.5" rx="77.5" ry="61.5" stroke="#000000"/>
+   <ellipse id="svg_18" fill="#d4e6f9" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="136.75" cy="151.50001" rx="77.5" ry="61.5" stroke="#000000"/>
+  </g>
+  <path stroke="#000000" d="m261,315c-2.60001,-0.94284 -3.39999,-0.99774 -4.40533,-1c-0.93866,-0.00211 -1.536,0 -2.68083,0c-0.94701,0 -1.46851,0 -2.5925,0c-0.5965,0 -1.21201,0 -2.48801,0c-1.31866,0 -1.99049,0 -2.66933,0c-0.68483,0 -1.37466,0 -2.76534,0c-1.39867,0 -2.10002,-0.00241 -2.80933,0.004c-0.72537,0.00653 -1.47495,0.02164 -2.25601,0.0585c-0.82169,0.03879 -1.69189,0.09637 -2.616,0.19351c-2.0538,0.21591 -3.18895,0.40146 -4.388,0.59866c-1.24736,0.20517 -2.52235,0.43735 -3.8085,0.68698c-1.2832,0.24905 -2.54401,0.50702 -3.76349,0.77701c-2.26053,0.50049 -3.26474,0.75488 -4.18668,0.99466c-0.84833,0.22061 -1.62616,0.43716 -2.34149,0.64502c-0.66194,0.19235 -1.27426,0.38022 -1.84651,0.55499c-1.04921,0.32043 -1.53938,0.46567 -2.01067,0.60266c-0.45306,0.13168 -0.88997,0.25653 -1.30949,0.384c-0.40579,0.12329 -0.79898,0.24527 -1.1745,0.384c-0.72673,0.26846 -1.07077,0.42819 -1.39999,0.60001c-0.93938,0.4903 -1.49445,0.82965 -2.345,1.49448c-0.74492,0.58224 -1.34485,1.22232 -1.90018,1.77869c-0.72748,0.72882 -1.28761,1.25107 -1.75883,1.9295c-0.66489,0.95724 -0.87253,1.55148 -1.17949,2.47498c-0.33122,0.99652 -0.50131,1.72058 -0.7045,2.44235c-0.19693,0.69955 -0.60001,1.896 -1,2.68799l-0.60001,0.70801l-0.60001,0.60001l-0.59866,0.60001" id="svg_21" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="none"/>
+ </g>
+</svg>
