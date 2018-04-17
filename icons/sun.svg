@@ -1,14 +1,14 @@
 <svg width="235" height="235" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
   <g>
-    <title>Layer 3</title>
+    <title>Sunlight 2</title>
     <circle fill="#ffbd54" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="116.5" cy="116.5" r="115" id="svg_20" fill-opacity="0.6" stroke="#000000"/>
   </g>
   <g>
-    <title>Layer 2</title>
+    <title>Sunlight 1</title>
     <circle fill="#f9fc55" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" fill-opacity="0.5" opacity="0.7" cx="116.5" cy="116.5" r="75" id="svg_22" stroke="#000000"/>
   </g>
   <g>
-    <title>Layer 1</title>
+    <title>Sun</title>
     <circle fill="#f9fc55" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" opacity="0.7" cx="116.5" cy="116.5" r="42" id="svg_8" stroke="#000000"/>
   </g>
 </svg>

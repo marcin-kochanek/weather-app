@@ -1,6 +1,6 @@
 (function getCurrentDate() {
-  const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
-  //const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+  //const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
+  const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
   const MONTHS = [`jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`];
 
   const addZero = (current) => {
@@ -8,7 +8,7 @@
   };
 
   const today = new Date();
-  const currentDay = WEEK_DAYS[today.getDay()-1]; //monday is 0!
+  const currentDay = WEEK_DAYS_SHORT[today.getDay()-1]; //monday is 0!
   const currentDate = today.getDate();
   const currentMonth = MONTHS[today.getMonth()];
   const currentYear = today.getFullYear();
@@ -29,12 +29,13 @@ function assignTemp(nodeEle, tempsArr) {
 }
 
 function assignDay(nodeEle) {
-  const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+  //const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+  const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
   const today = new Date().getDay();
   
   nodeEle.forEach((el, index) => {
     i = ((index + today) % 7)
-    el.innerHTML = WEEK_DAYS_SHORT[i];
+    el.innerHTML = WEEK_DAYS[i];
   });
 }
 
