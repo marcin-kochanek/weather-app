@@ -75,6 +75,19 @@ const getAverageTemp = function(arr, h1, h2, h3) {
   return avgTempArr;
 }
 
+const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
+  const forecastDescArr = [];
+  const nodeEle = document.querySelectorAll('.forecast__desc'); 
+
+  arr.forEach((el) => {
+    forecastDescArr.push(el[timeOfTheDay].weather[0].description);
+  });
+
+  nodeEle.forEach((el, index) => {
+    el.innerHTML = `${forecastDescArr[index]}`;
+  });
+}
+
 function getWeather() {
   const cityName = document.getElementById('cityName').value;
   const currentTemp = document.querySelector('.weather__info--temp');
@@ -122,12 +135,14 @@ function getWeatherForecast() {
       forecastDays[3] = filterForecast(data, today, 4);
       forecastDays[4] = filterForecast(data, today, 5);
 
-      console.log(forecastDays[0]);
+      console.log(forecastDays);
 
       // systematic temperature recording
       morningTemperatures = getAverageTemp(forecastDays, 3, 6, 9);
       dayTemperatures = getAverageTemp(forecastDays, 9, 12, 15);
       eveningTemperatures = getAverageTemp(forecastDays, 18, 21, 0);
+
+      getAndAssignForecastDesc(forecastDays, 4);
 
       assignTemp(morningTempEle, morningTemperatures);
       assignTemp(dayTempEle, dayTemperatures);

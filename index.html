@@ -8,14 +8,15 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="search-menu">
-    <input type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
-    <button type="submit" id="submitButton">Check weather</button>
-  </div>
   <div class="weather-app">
-    <div class="weather">
+    <div class="weather color--rain">
       <div class="weather__search">
-        <div class="weather__search-icon">Y</div>
+        <button class="weather__search-button">
+          <div class="weather__search-icon color--rain"></div>
+          <!--<svg class="weather__search-icon">
+            <use xlink:href="icons/menu-icons.svg#icon-search"></use>
+          </svg>-->
+        </button>
         <div class="weather__today-info">
             <span class="weather__time">6:51</span>
             <div class="weather__date">
@@ -27,21 +28,21 @@
       <div class="weather__icon">
         <svg width="235" height="235" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
           <g>
-            <title>Sunlight 2</title>
-            <circle fill="#ffbd54" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="116.5" cy="116.5" r="115" id="svg_20" fill-opacity="0.6" stroke="#000000"/>
+           <title>Layer 3</title>
+           <circle stroke="#000000" fill-opacity="0.2" id="svg_20" r="115" cy="115.5" cx="117.5" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#e6d4e2"/>
           </g>
           <g>
-            <title>Sunlight 1</title>
-            <circle fill="#f9fc55" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" fill-opacity="0.5" opacity="0.7" cx="116.5" cy="116.5" r="75" id="svg_22" stroke="#000000"/>
+           <title>Layer 2</title>
+           <circle stroke="#000000" id="svg_22" r="75" cy="116.5" cx="116.5" opacity="0.7" fill-opacity="0.3" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f9fc55"/>
           </g>
           <g>
-            <title>Sun</title>
-            <circle fill="#f9fc55" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" opacity="0.7" cx="116.5" cy="116.5" r="42" id="svg_8" stroke="#000000"/>
+           <title>Layer 1</title>
+           <circle stroke="#000000" id="svg_8" r="42" cy="115.5" cx="116.5" opacity="0.7" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f7f779"/>
           </g>
-        </svg>
+         </svg>
       </div>
       <div class="weather__info">
-        <span class="weather__info--temp">40</span>
+        <span class="weather__info--temp">40°</span>
         <span class="weather__info--city">Opole</span>
         <span class="weather__info--desc">sunny</span>
       </div>
@@ -49,75 +50,91 @@
     <div class="details-forecast-wrapper">
       <div class="details">
         <h2 class="second-heading">details</h2>
+        <div class="second-heading__bar color--rain"></div>
         <ul class="details__list">
           <li class="details__list-item">
-            <div class="details__icon details__icon--sunrise"></div>
+            <div class="details__icon details__icon--sunrise color--rain"></div>
             <h3 class="third-heading"><strong class="details__sunrise">7:01</strong>am</h3>
           </li>
           <li class="details__list-item">
-            <div class="details__icon details__icon--sunset"></div>
+            <div class="details__icon details__icon--sunset color--rain"></div>
             <h3 class="third-heading"><strong class="details__sunset">6:20</strong>pm</h3>
           </li>
           <li class="details__list-item">
-            <div class="details__icon details__icon--humidity"></div>
+            <div class="details__icon details__icon--humidity color--rain"></div>
             <h3 class="third-heading"><strong class="details__humidity">40</strong>&percnt;</h3>
           </li>
           <li class="details__list-item">
-            <div class="details__icon details__icon--pressure"></div>
+            <div class="details__icon details__icon--pressure color--rain"></div>
             <h3 class="third-heading"><strong class="details__pressure">1001</strong>hPh</h3>
           </li>
         </ul>
       </div>
       <div class="forecast">
         <h2 class="second-heading">forecast</h2>
+        <div class="second-heading__bar color--rain"></div>
         <ul class="forecast__list">
           <li class="forecast__list-item">
-            <span class="forecast__day">THU</span>
-            <span class="forecast__temp">
-              <span class="forecast__temp--icon">OOO</span>
-              <span class="forecast__temp--morning">3</span>
-              <span class="forecast__temp--day">16</span>
-              <span class="forecast__temp--evening">9</span>
+            <span class="forecast__day">thursday</span>
+            <div class="forecast__info">
+              <div class="forecast__desc">sunny</div>
+              <div class="forecast__temp">
+                <span class="forecast__temp--morning">9°</span>
+                <span class="forecast__temp--day color--rain">16°</span>
+                <span class="forecast__temp--evening">12°</span>
+              </div>
+            </div>
+          </li>
+          <li class="forecast__list-item">
+            <span class="forecast__day">thursday</span>
+            <div class="forecast__info">
+              <div class="forecast__desc">sunny</div>
+              <div class="forecast__temp">
+                <span class="forecast__temp--morning">9°</span>
+                <span class="forecast__temp--day color--rain color--rain">16°</span>
+                <span class="forecast__temp--evening">12°</span>
+              </div>
             </span>
           </li>
           <li class="forecast__list-item">
-            <span class="forecast__day">THU</span>
-            <span class="forecast__temp">
-              <span class="forecast__temp--icon">OOO</span>
-              <span class="forecast__temp--morning">3</span>
-              <span class="forecast__temp--day">16</span>
-              <span class="forecast__temp--evening">9</span>
+            <span class="forecast__day">thursday</span>
+            <div class="forecast__info">
+              <div class="forecast__desc">sunny</div>
+              <div class="forecast__temp">
+                <span class="forecast__temp--morning">9°</span>
+                <span class="forecast__temp--day color--rain">16°</span>
+                <span class="forecast__temp--evening">12°</span>
+              </div>
             </span>
           </li>
           <li class="forecast__list-item">
-            <span class="forecast__day">THU</span>
-            <span class="forecast__temp">
-              <span class="forecast__temp--icon">OOO</span>
-              <span class="forecast__temp--morning">3</span>
-              <span class="forecast__temp--day">16</span>
-              <span class="forecast__temp--evening">9</span>
+            <span class="forecast__day">thursday</span>
+            <div class="forecast__info">
+              <div class="forecast__desc">sunny</div>
+              <div class="forecast__temp">
+                <span class="forecast__temp--morning">9°</span>
+                <span class="forecast__temp--day color--rain">16°</span>
+                <span class="forecast__temp--evening">12°</span>
+              </div>
             </span>
           </li>
           <li class="forecast__list-item">
-            <span class="forecast__day">THU</span>
-            <span class="forecast__temp">
-              <span class="forecast__temp--icon">OOO</span>
-              <span class="forecast__temp--morning">3</span>
-              <span class="forecast__temp--day">16</span>
-              <span class="forecast__temp--evening">9</span>
-            </span>
-          </li>
-          <li class="forecast__list-item">
-            <span class="forecast__day">THU</span>
-            <span class="forecast__temp">
-              <span class="forecast__temp--icon">OOO</span>
-              <span class="forecast__temp--morning">3</span>
-              <span class="forecast__temp--day">16</span>
-              <span class="forecast__temp--evening">9</span>
-            </span>
+            <span class="forecast__day">thursday</span>
+            <div class="forecast__info">
+              <div class="forecast__desc">sunny</div>
+              <div class="forecast__temp">
+                <span class="forecast__temp--morning">9°</span>
+                <span class="forecast__temp--day color--rain">16°</span>
+                <span class="forecast__temp--evening">12°</span>
+              </div>
+            </pan>
           </li>
         </ul>
       </div>
+    </div>
+    <div class="search-menu">
+        <input type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
+        <button type="submit" id="submitButton">Check weather</button>
     </div>
   </div>
 </body>
