@@ -138,22 +138,22 @@
         <form action="#" class="form">
           <fieldset>
             <div class="form__group form__group--radio">
-              <input type="radio" class="form__input--radio" id="small" name="group-size" value="small">
-              <label for="small" class="form__label--radio">
-                <span class="form__button-radio"></span>
+              <input class="form__input--radio" type="radio" id="location" name="weather-place" value="loaction">
+              <label class="form__label--radio" for="location">
+                <span class="form__button--radio"></span>
                 at your location
               </label>
             </div>
             <div class="form__group form__group--radio">
-              <input type="radio" class="form__input--radio" id="large" name="group-size" value="large">
-              <label for="large" class="form__label--radio">
-                <span class="form__button-radio"></span>
+              <input type="radio" class="form__input--radio" id="destination" name="weather-place" value="destination">
+              <label for="destination" class="form__label--radio">
+                <span class="form__button--radio"></span>
                 at your destination
               </label>
             </div>
             <div class="form__group form__group--text">
               <input class="form__input form__input--text" type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
-              <button class="form__btn" type="submit" id="submitButton">Check weather</button>
+              <button class="form__button" type="submit" id="submitButton">Check weather</button>
             </div>
           </fieldset>
         </form>
