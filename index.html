@@ -132,9 +132,32 @@
         </ul>
       </div>
     </div>
-    <div class="search-menu">
-        <input type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
-        <button type="submit" id="submitButton">Check weather</button>
+    <div class="search-menu-wrapper">
+      <div class="search-menu">
+        <h1 class="first-heading">Check the weather before you go.</h1>
+        <form action="#" class="form">
+          <fieldset>
+            <div class="form__group form__group--radio">
+              <input type="radio" class="form__input--radio" id="small" name="group-size" value="small">
+              <label for="small" class="form__label--radio">
+                <span class="form__button-radio"></span>
+                at your location
+              </label>
+            </div>
+            <div class="form__group form__group--radio">
+              <input type="radio" class="form__input--radio" id="large" name="group-size" value="large">
+              <label for="large" class="form__label--radio">
+                <span class="form__button-radio"></span>
+                at your destination
+              </label>
+            </div>
+            <div class="form__group form__group--text">
+              <input class="form__input form__input--text" type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
+              <button class="form__btn" type="submit" id="submitButton">Check weather</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
   </div>
 </body>

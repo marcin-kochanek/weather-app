@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700');
 
 $color-main: #fff;
 
@@ -22,7 +22,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   font-family: 'Montserrat', sans-serif;
-  background-color: #D5D5D5;
+  background-image: #f7f7f7;
+  height: 100vh;
 
   display: flex;
   align-items: center;
@@ -44,6 +45,14 @@ body {
 
 /////////////////
 /// HEADINGS ///
+
+.first-heading {
+  font-size: 3.8rem;
+  //text-align: center;
+  padding: 3rem;
+  padding-bottom: 10rem;
+  color: #292522;
+}
 
 .second-heading {
   display: block;
@@ -70,11 +79,14 @@ body {
 }
 
 .weather-app {
-  //height: 80vh;
+  height: 90vh;
   max-width: 120rem;
   margin: 3rem auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 40px -3px rgba(59, 59, 59, 0.9);
 
   display: flex;
+  position: relative;
 }
 
 .details-forecast-wrapper {
@@ -82,6 +94,7 @@ body {
   border-radius: 0 10px 10px 0;
   padding: 30px 35px;
   min-width: 60rem;
+  border: 1px solid #e7e7e7;
 
   display: flex;
   flex-direction: column;
@@ -111,7 +124,7 @@ body {
     height: 5rem;
     width: 5rem;
     background-color: #f7f7f7;
-    border-radius: 50px;
+    border-radius: 50%;
     cursor: pointer;
     margin-top: -7px;
     margin-left: -7px;
@@ -160,7 +173,7 @@ body {
   }
 
   &__info {
-    margin-bottom: 4rem; 
+    margin-bottom: 2rem; 
     
     display: flex;
     flex-direction: column;
@@ -191,7 +204,7 @@ body {
       height: 1px;
       width: 3rem;
       background-color: #f7f7f7;
-      top: 30px;
+      top: 20px;
     }
   }
 
@@ -246,6 +259,8 @@ body {
     margin-bottom: 2rem;
     fill: currentColor;
     -webkit-mask-image-size: cover;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
 
     &--sunrise {
       -webkit-mask-image: url(icons/sunrise.svg);
@@ -346,5 +361,132 @@ body {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+  }
+}
+
+.search-menu-wrapper {
+  min-width: 95rem;
+  height: 90vh;
+  border-radius: 10px;
+  position: absolute;
+  background-image: /*linear-gradient(to bottom, hsla(27, 14%, 85%, 0.712), hsla(27, 14%, 85%, 0.212)), */
+  url(icons/boy.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  //display: none;  
+  align-items: center;
+  //justify-content: center;
+}
+
+.search-menu {
+  position: relative;
+  height: 100%;
+  width: 60%; 
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  padding: 6rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+}
+
+
+.form {
+  &__group {
+    display: flex;
+
+    &--text {
+      flex-direction: column;
+    }
+  }
+
+  fieldset {
+    border: none;
+  }
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: #fff;
+    border-radius: 100px;
+    border: none;
+    width: 60%;
+    padding: .7rem 2rem;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+
+  &__label {
+
+    &--radio {
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding-left: 2rem;
+      position: relative;
+    }
+  }
+
+  &__button-radio {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid #C43D41;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: -.5rem;
+    left: -2.2rem;
+
+    &::after {
+      content: "";
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      background-color: #C43D41;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+  }
+
+  &__input {
+    font-family: inherit;
+    color: inherit;
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid transparent;
+    width: 75%;
+    display: block;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  &__btn {
+    text-transform: uppercase;
+    text-decoration: none;
+    width: 15rem;
+    padding: 1rem 2rem;
+    display: inline-block;
+    border-radius: 10rem;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background-color: #C43D41;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    -webkit-box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    -webkit-backface-visibility: hidden;
   }
 }
