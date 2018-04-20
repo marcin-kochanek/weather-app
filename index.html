@@ -137,22 +137,18 @@
         <h1 class="first-heading">Check the weather before you go.</h1>
         <form action="#" class="form">
           <fieldset>
-            <div class="form__group form__group--radio">
-              <input class="form__input--radio" type="radio" id="location" name="weather-place" value="loaction">
-              <label class="form__label--radio" for="location">
+            <div class="form__group">
+              <input class="form__input form__input--radio" type="radio" id="location" name="weather-place" value="loaction" checked>
+              <label class="form__label form__label--radio" for="location">
                 <span class="form__button--radio"></span>
-                at your location
+                <span class="form__label--text">at your location</span>
               </label>
-            </div>
-            <div class="form__group form__group--radio">
-              <input type="radio" class="form__input--radio" id="destination" name="weather-place" value="destination">
-              <label for="destination" class="form__label--radio">
+              <input class="form__input form__input--radio" type="radio" id="destination" name="weather-place" value="destination">
+              <label class="form__label form__label--radio" for="destination">
                 <span class="form__button--radio"></span>
-                at your destination
+                <span class="form__label--text">at your destination</span>
               </label>
-            </div>
-            <div class="form__group form__group--text">
-              <input class="form__input form__input--text" type="text" id="cityName" required="" placeholder="City name" autocomplete="on">
+              <input class="form__input form__input--text" type="text" id="cityName" placeholder="City name" autocomplete="on" required="false">
               <button class="form__button" type="submit" id="submitButton">Check weather</button>
             </div>
           </fieldset>

@@ -1,3 +1,31 @@
+let turnOffRequired = function() {
+  let citySelektor = document.getElementById("cityName");
+  let destinationElement = document.getElementById("destination");
+  let locationElement = document.getElementById("location");
+
+  if (destinationElement.checked) {
+    citySelektor.required = true;
+  } else if (locationElement.checked) {
+    citySelektor.required = false;
+  }
+}
+
+document.getElementById('submitButton').addEventListener('click', () => {
+  turnOffRequired();
+
+  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
+  console.log(welcomeScreen);
+  welcomeScreen[0].className += " inactive";
+});
+
+document.getElementsByClassName("weather__search-button")[0].addEventListener('click', () => {
+  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper inactive');
+  welcomeScreen[0].className = "search-menu-wrapper";
+
+});
+
+// WEATHER LOGIC
+
 (function getCurrentDate() {
   //const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
   const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
@@ -34,7 +62,7 @@ function assignDay(nodeEle) {
   const today = new Date().getDay();
   
   nodeEle.forEach((el, index) => {
-    i = ((index + today) % 7)
+    i = ((index + today) % 7);
     el.innerHTML = WEEK_DAYS[i];
   });
 }

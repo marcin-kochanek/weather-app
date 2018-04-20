@@ -49,8 +49,7 @@ body {
 .first-heading {
   font-size: 3.8rem;
   //text-align: center;
-  padding: 3rem;
-  padding-bottom: 10rem;
+  padding-bottom: 6rem;
   color: #292522;
 }
 
@@ -379,6 +378,10 @@ body {
   //justify-content: center;
 }
 
+.inactive {
+  display: none;
+}
+
 .search-menu {
   position: relative;
   height: 100%;
@@ -387,7 +390,7 @@ body {
   display: flex;
   flex-direction: column;
   //align-items: center;
-  padding: 6rem;
+  padding: 8rem;
   background-color: rgba(255, 255, 255, 0.7);
   -webkit-clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
@@ -395,9 +398,13 @@ body {
 
 
 .form {
+
   &__group {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 70%;
 
     &--radio {
       display: inline-block;
@@ -416,7 +423,7 @@ body {
   &__input {
     font-family: inherit;
     color: inherit;
-    display: none;
+    display: block;
     font-size: 1.5rem;
     padding: 1.5rem 2rem;
     border: none;
@@ -429,36 +436,55 @@ body {
 
     &--radio {
       display: none;
+    }  
+
+    &--text {
+      opacity: 0;
+      transform: translateY(-20px);
+      -webkit-transition: all .8s;
+      transition: all .8s;
     }   
     
-    &--radio:checked ~ .form__label--radio .form__button--radio::after {
+    &--radio:checked + .form__label--radio .form__button--radio::after {
       opacity: 1;
+    }
+
+    &--radio#destination:checked ~ &--text {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
   &__label {
+    padding-bottom: 2rem;
 
     &--radio {
       font-size: 1.6rem;
       cursor: pointer;
-      padding-left: 1.5rem;
+      //padding-left: 1.5rem;
       position: relative;
+      align-self: flex-start;
+    }
+
+    &--text {
+      padding-left: 4rem;
     }
   }
 
   &__button {
+    display: inline-block;
+    width: 20rem;
+    padding: 2rem 3.5rem;
+    margin-top: 5rem;
     text-transform: uppercase;
     text-decoration: none;
-    width: 15rem;
-    padding: 1rem 2rem;
-    display: inline-block;
     border-radius: 10rem;
     position: relative;
     cursor: pointer;
     border: none;
     background-color: #C43D41;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     -webkit-box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
     box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
@@ -472,7 +498,7 @@ body {
       display: inline-block;
       position: absolute;
       top: -.7rem;
-      left: -2.45rem;
+      //left: -2.45rem;
   
       &::after {
         content: "";
@@ -494,10 +520,10 @@ body {
   }
 }
 
-#destination:checked + .form__group--text .form__input--text {
-  display: block;
+/*#destination:checked + .form__input--text {
+  opacity: 1;
 }
 
-#location:checked + .form__group--text .form__input--text {
-  display: none;
-}
+#location:checked + .form__input--text {
+  opacity: 0;
+}*/
