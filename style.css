@@ -23,10 +23,13 @@ body {
   justify-content: center; }
 
 .color--rain {
-  background-image: linear-gradient(to right bottom, #125995, #2d6ea4, #4583b2, #5d98bf, #77adcd); }
+  background-image: linear-gradient(to bottom, #125995, #2d6ea4, #4583b2, #5d98bf, #77adcd);
+  background-image: url(icons/skyinthnight.jpg);
+  background-position: center;
+  background-size: cover; }
 
 .color--sun {
-  background-image: linear-gradient(to right bottom, #f24b90, #f85782, #fa6577, #fa736d, #f78167); }
+  background-image: linear-gradient(to bottom, #f24b90, #f85782, #fa6577, #fa736d, #f78167); }
 
 .first-heading {
   font-size: 3.8rem;

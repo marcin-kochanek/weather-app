@@ -1,3 +1,4 @@
+ // CHANGING THE SCREENS
 let turnOffRequired = function() {
   let citySelektor = document.getElementById("cityName");
   let destinationElement = document.getElementById("destination");
@@ -14,18 +15,74 @@ document.getElementById('submitButton').addEventListener('click', () => {
   turnOffRequired();
 
   let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
-  console.log(welcomeScreen);
   welcomeScreen[0].className += " inactive";
 });
 
 document.getElementsByClassName("weather__search-button")[0].addEventListener('click', () => {
   let welcomeScreen = document.getElementsByClassName('search-menu-wrapper inactive');
   welcomeScreen[0].className = "search-menu-wrapper";
-
 });
 
-// WEATHER LOGIC
+// GEOLOCATION
+const getCurrentLocation = () => {
+  const geo = navigator.geolocation;
 
+  if (geo) {
+    console.log(`Usługa geolokalizacji jest dostępna!`);
+
+    geo.getCurrentPosition((location) => {
+      const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
+      const lat = location.coords.latitude;
+      const lon = location.coords.longitude;
+
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
+
+      getWeather(weatherUrl);
+      getWeatherForecast(forecastUrl);
+      codeLatLng(lat, lon);
+      console.log(`Twoje współrzędne to: ${lat}, ${lon}`);
+    });
+  } else {
+    console.log(`Usługa geolokalizacji nie jest dostępna`);
+  }
+}
+
+codeLatLng = function (lat, lng) {
+
+  var latlng = new google.maps.LatLng(lat, lng);
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        //formatted address
+        console.log(`Your address: ${results[0].formatted_address}`);
+          
+        //find country name
+          for (var i=0; i < results[0].address_components.length; i++) {
+            for (var b=0; b < results[0].address_components[i].types.length; b++) {
+
+              //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+              if (results[0].address_components[i].types[b] == "administrative_area_level_2") {
+                  //this is the object you are looking for
+                  city = results[0].address_components[i];
+                  break;
+              }
+            }
+          }
+        document.querySelector('.weather__info--city').innerHTML = city.long_name;
+
+      } else {
+        console.log("No results found");
+      }
+    } else {
+      console.log("Geocoder failed due to: " + status);
+    }
+  });
+};
+
+// WEATHER LOGIC
 (function getCurrentDate() {
   //const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
   const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
@@ -116,7 +173,7 @@ const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
   });
 }
 
-function getWeather() {
+function getWeather(urlApi) {
   const cityName = document.getElementById('cityName').value;
   const currentTemp = document.querySelector('.weather__info--temp');
   const currentDesc = document.querySelector('.weather__info--desc');
@@ -124,11 +181,8 @@ function getWeather() {
   const sunset = document.querySelector('.details__sunset');
   const humidity = document.querySelector('.details__humidity');
   const pressure = document.querySelector('.details__pressure');
-  const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
-
-  document.querySelector('.weather__info--city').innerHTML = cityName;
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`)
+  
+  fetch(urlApi)
     .then((res) => res.json())
     .then((data) => {
       currentTemp.innerHTML = `${data.main.temp.toFixed()}<span class='degree-symbol'>°</span>`;
@@ -140,15 +194,14 @@ function getWeather() {
     });
 }
 
-function getWeatherForecast() {
-  const cityName = document.getElementById('cityName').value;
-  const nameOfTheDays = document.querySelectorAll('.forecast__day');
+function getWeatherForecast(urlApi) {
+    const nameOfTheDays = document.querySelectorAll('.forecast__day');
   const morningTempEle = document.querySelectorAll('.forecast__temp--morning');
   const dayTempEle = document.querySelectorAll('.forecast__temp--day');
   const eveningTempEle = document.querySelectorAll('.forecast__temp--evening');
   const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`)
+  fetch(urlApi)
     .then((res) => res.json())
     .then((data) => {
       let morningTemperatures;
@@ -181,6 +234,18 @@ function getWeatherForecast() {
 }
 
 document.getElementById('submitButton').addEventListener('click', () => {
-  getWeather();
-  getWeatherForecast();
+  const locationInput = document.getElementById('location');
+  const cityName = document.getElementById('cityName').value;
+  const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
+  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`;
+
+  document.querySelector('.weather__info--city').innerHTML = cityName;
+
+  if (locationInput.checked) {
+    getCurrentLocation();
+  } else {
+    getWeather(weatherUrl);
+    getWeatherForecast(forecastUrl);
+  }
 });
