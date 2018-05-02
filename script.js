@@ -24,7 +24,7 @@ document.getElementsByClassName("weather__search-button")[0].addEventListener('c
 });
 
 // GEOLOCATION
-const getCurrentLocation = () => {
+function getCurrentLocation() {
   const geo = navigator.geolocation;
 
   if (geo) {
@@ -46,12 +46,11 @@ const getCurrentLocation = () => {
   } else {
     console.log(`Usługa geolokalizacji nie jest dostępna`);
   }
-}
+};
 
-codeLatLng = function (lat, lng) {
-
-  var latlng = new google.maps.LatLng(lat, lng);
-  var geocoder = new google.maps.Geocoder();
+function codeLatLng(lat, lng) {
+  const latlng = new google.maps.LatLng(lat, lng);
+  const geocoder = new google.maps.Geocoder();
 
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -60,19 +59,17 @@ codeLatLng = function (lat, lng) {
         console.log(`Your address: ${results[0].formatted_address}`);
           
         //find country name
-          for (var i=0; i < results[0].address_components.length; i++) {
-            for (var b=0; b < results[0].address_components[i].types.length; b++) {
-
-              //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-              if (results[0].address_components[i].types[b] == "administrative_area_level_2") {
-                  //this is the object you are looking for
-                  city = results[0].address_components[i];
-                  break;
+          for (let i=0; i < results[0].address_components.length; i++) {
+            for (let b=0; b < results[0].address_components[i].types.length; b++) {
+              //there are different types that might hold a city admin_area_lvl_1/administrative_area_level_2 usually does in come cases looking for sublocality type will be more appropriate
+              if (results[0].address_components[i].types[b] == "locality") {
+                //this is the object you are looking for
+                city = results[0].address_components[i];
+                break;
               }
             }
           }
-        document.querySelector('.weather__info--city').innerHTML = city.long_name;
-
+          document.querySelector('.weather__info--city').innerHTML = city.long_name;
       } else {
         console.log("No results found");
       }
@@ -173,7 +170,7 @@ const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
   });
 }
 
-function getWeather(urlApi) {
+const getWeather = function(urlApi) {
   const cityName = document.getElementById('cityName').value;
   const currentTemp = document.querySelector('.weather__info--temp');
   const currentDesc = document.querySelector('.weather__info--desc');
@@ -182,7 +179,7 @@ function getWeather(urlApi) {
   const humidity = document.querySelector('.details__humidity');
   const pressure = document.querySelector('.details__pressure');
   
-  fetch(urlApi)
+  const storedWeatherData = fetch(urlApi)
     .then((res) => res.json())
     .then((data) => {
       currentTemp.innerHTML = `${data.main.temp.toFixed()}<span class='degree-symbol'>°</span>`;
@@ -194,14 +191,14 @@ function getWeather(urlApi) {
     });
 }
 
-function getWeatherForecast(urlApi) {
-    const nameOfTheDays = document.querySelectorAll('.forecast__day');
+const getWeatherForecast = function(urlApi) {
+  const nameOfTheDays = document.querySelectorAll('.forecast__day');
   const morningTempEle = document.querySelectorAll('.forecast__temp--morning');
   const dayTempEle = document.querySelectorAll('.forecast__temp--day');
   const eveningTempEle = document.querySelectorAll('.forecast__temp--evening');
   const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
-  fetch(urlApi)
+  const storedForecastData = fetch(urlApi)
     .then((res) => res.json())
     .then((data) => {
       let morningTemperatures;
@@ -215,8 +212,6 @@ function getWeatherForecast(urlApi) {
       forecastDays[2] = filterForecast(data, today, 3);
       forecastDays[3] = filterForecast(data, today, 4);
       forecastDays[4] = filterForecast(data, today, 5);
-
-      console.log(forecastDays);
 
       // systematic temperature recording
       morningTemperatures = getAverageTemp(forecastDays, 3, 6, 9);
@@ -233,6 +228,8 @@ function getWeatherForecast(urlApi) {
     });
 }
 
+getCurrentLocation();
+
 document.getElementById('submitButton').addEventListener('click', () => {
   const locationInput = document.getElementById('location');
   const cityName = document.getElementById('cityName').value;
@@ -242,10 +239,10 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
   document.querySelector('.weather__info--city').innerHTML = cityName;
 
-  if (locationInput.checked) {
-    getCurrentLocation();
-  } else {
+  if (!locationInput.checked) {
     getWeather(weatherUrl);
     getWeatherForecast(forecastUrl);
-  }
+  } /*else {
+    getCurrentLocation();
+  }*/
 });
