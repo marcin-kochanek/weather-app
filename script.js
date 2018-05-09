@@ -38,9 +38,10 @@ function getCurrentLocation() {
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
 
+      codeLatLng(lat, lon);
       getWeather(weatherUrl);
       getWeatherForecast(forecastUrl);
-      codeLatLng(lat, lon);
+
       console.log(`Twoje współrzędne to: ${lat}, ${lon}`);
     });
   } else {
@@ -55,10 +56,13 @@ function codeLatLng(lat, lng) {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
+        const city = results[1].address_components[3].long_name;
         //formatted address
+        document.querySelector('.weather__info--city').innerHTML = city;
         console.log(`Your address: ${results[0].formatted_address}`);
-          
-        //find country name
+
+        /*
+        //find city name
           for (let i=0; i < results[0].address_components.length; i++) {
             for (let b=0; b < results[0].address_components[i].types.length; b++) {
               //there are different types that might hold a city admin_area_lvl_1/administrative_area_level_2 usually does in come cases looking for sublocality type will be more appropriate
@@ -69,7 +73,8 @@ function codeLatLng(lat, lng) {
               }
             }
           }
-          document.querySelector('.weather__info--city').innerHTML = city.long_name;
+          document.querySelector('.weather__info--city').innerHTML = city.long_name;*/
+
       } else {
         console.log("No results found");
       }
@@ -228,7 +233,7 @@ const getWeatherForecast = function(urlApi) {
     });
 }
 
-getCurrentLocation();
+//getCurrentLocation();
 
 document.getElementById('submitButton').addEventListener('click', () => {
   const locationInput = document.getElementById('location');
@@ -237,12 +242,11 @@ document.getElementById('submitButton').addEventListener('click', () => {
   const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`;
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`;
 
-  document.querySelector('.weather__info--city').innerHTML = cityName;
-
   if (!locationInput.checked) {
     getWeather(weatherUrl);
     getWeatherForecast(forecastUrl);
-  } /*else {
+    document.querySelector('.weather__info--city').innerHTML = cityName;
+  } else {
     getCurrentLocation();
-  }*/
+  }
 });

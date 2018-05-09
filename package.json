@@ -6,7 +6,6 @@
     "watch:sass": "node-sass main.scss style.css -w",
     "devserver": "live-server",
     "dev:start": "npm-run-all --parallel devserver watch:sass",
-
     "prefix:css": "postcss --use autoprefixer -b \"last 10 version\" style.css -o style.prefix.css"
   },
   "repository": {
