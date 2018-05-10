@@ -1,0 +1,21 @@
+<svg width="235" height="235" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <g display="inline">
+    <title>cloud2</title>
+    <ellipse id="svg_8" ry="43.5" rx="80" cy="106" cx="148.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" stroke="#000000" transform="rotate(5 148.4999999999998,106.00000000000004) "/>
+  </g>
+  <g display="inline">
+    <title>cloud</title>
+    <ellipse id="svg_6" ry="59" rx="114" cy="62" cx="115.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" stroke="#000000" transform="rotate(5 115.5000000000002,62.000000000000085) "/>
+  </g>
+  <g>
+    <title>cloud 3</title>
+    <g stroke="null" id="svg_11">
+    <ellipse stroke="#000000" ry="43.5" rx="80" cy="132.64904" cx="57.60381" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" transform="matrix(0.5388334961617514,0.047101098577992245,-0.04714182244219272,0.5383680202639693,113.69586183474632,134.49262010985427) " id="svg_5"/>
+    <ellipse stroke="#000000" ry="59" rx="114" cy="90.64904" cx="33.60381" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" transform="matrix(0.5388334961617514,0.047101098577992245,-0.04714182244219272,0.5383680202639693,111.66650720094918,135.53667294652504) " id="svg_9"/>
+    </g>
+    <g id="svg_12" stroke="null">
+    <ellipse ry="43.5" rx="80" cy="-21.091" cx="-390.84829" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" transform="matrix(0.3374267176110608,0.030862732575004968,-0.02952101256173107,0.35276264753844305,178.8892137388621,167.19766069408163) " id="svg_13" stroke="#000000"/>
+    <ellipse ry="59" rx="114" cy="-63.091" cx="-414.84829" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#d4e6f9" transform="matrix(0.3374267176110608,0.030862732575004968,-0.02952101256173107,0.35276264753844305,177.61839728474655,167.88177050181764) " id="svg_14" stroke="#000000"/>
+    </g>
+  </g>
+</svg>

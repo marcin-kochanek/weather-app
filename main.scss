@@ -34,15 +34,23 @@ body {
 /// COLORS ///
 
 .color {
-  &--rain {
-    background-image: linear-gradient(to bottom, #125995, #2d6ea4, #4583b2, #5d98bf, #77adcd);
-    background-image: url(icons/skyinthnight.jpg);
-    background-position: center;
-    background-size: cover;
+  &--rainly {
+    background-color: #2A3259;
+  }
+
+  &--day {
+    background-color: #579CE9;
   }
 
   &--sun {
-    background-image: linear-gradient(to bottom, #f24b90, #f85782, #fa6577, #fa736d, #f78167);
+    background-color: #fcad54;
+  }
+
+  &--night {
+    /*background-image: url(icons/images/skyinthnight.jpg);
+    background-position: center;
+    background-size: cover;*/
+    background-color: #01051C;
   }
 }
 
@@ -107,6 +115,8 @@ body {
   border-radius: 10px 0 0 10px;
   padding: 30px 35px;
   color: #F7F7F7;
+  position: relative;
+  overflow: hidden;
  
   display: flex;
   flex-direction: column;
@@ -117,6 +127,7 @@ body {
     justify-content: space-between;
     //align-items: center;
     background-color: transparent;
+    z-index: 100;
   }
 
   &__search-button {
@@ -150,7 +161,7 @@ body {
     height: 3rem;
     width: 3rem;
     -webkit-mask-size: cover;
-    -webkit-mask-image: url(icons/search.svg);
+    -webkit-mask-image: url(icons/svg_icons/search.svg);
 
     display: inline-flex;
     align-items: center;
@@ -172,6 +183,10 @@ body {
 
   &__icon svg {
     margin: 2rem 0;
+    transform: scale(1.6);
+    position: absolute;
+    top: 1.5rem;
+    right: -4rem;
   }
 
   &__info {
@@ -265,16 +280,16 @@ body {
     -webkit-mask-position: center;
 
     &--sunrise {
-      -webkit-mask-image: url(icons/sunrise.svg);
+      -webkit-mask-image: url(icons/svg_icons/sunrise.svg);
     }
     &--sunset {
-      -webkit-mask-image: url(icons/sunset.svg);
+      -webkit-mask-image: url(icons/svg_icons/sunset.svg);
     }
     &--humidity {
-      -webkit-mask-image: url(icons/humidity.svg);
+      -webkit-mask-image: url(icons/svg_icons/humidity.svg);
     }
     &--pressure {
-      -webkit-mask-image: url(icons/pressure.svg);
+      -webkit-mask-image: url(icons/svg_icons/pressure.svg);
     }
   }
 }
@@ -368,11 +383,12 @@ body {
 
 .search-menu-wrapper {
   min-width: 95rem;
+  z-index: 200;
   height: 90vh;
   border-radius: 10px;
   position: absolute;
   background-image: /*linear-gradient(to bottom, hsla(27, 14%, 85%, 0.712), hsla(27, 14%, 85%, 0.212)), */
-  url(icons/boy.jpg);
+  url(icons/images/boy.jpg);
   background-size: cover;
   background-position: center;
   display: flex;

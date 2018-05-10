@@ -9,7 +9,7 @@ let turnOffRequired = function() {
   } else if (locationElement.checked) {
     citySelektor.required = false;
   }
-}
+};
 
 document.getElementById('submitButton').addEventListener('click', () => {
   turnOffRequired();
@@ -167,7 +167,13 @@ const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
   const nodeEle = document.querySelectorAll('.forecast__desc'); 
 
   arr.forEach((el) => {
-    forecastDescArr.push(el[timeOfTheDay].weather[0].description);
+    //if there is no forecast data for 12 noon, take the previous temperature reading (at 9 am)
+    if (el[timeOfTheDay]) {
+      forecastDescArr.push(el[timeOfTheDay].weather[0].description);
+    } else {
+      forecastDescArr.push(el[timeOfTheDay-1].weather[0].description);
+    }
+    
   });
 
   nodeEle.forEach((el, index) => {
@@ -193,7 +199,13 @@ const getWeather = function(urlApi) {
       sunset.innerHTML = convertUTC(data.sys.sunset);
       humidity.innerHTML = data.main.humidity;
       pressure.innerHTML = data.main.pressure.toFixed();
+
+      return data.weather[0].icon;
     });
+
+    console.log(storedWeatherData);
+
+  getWeatherSVGIcon(storedWeatherData);
 }
 
 const getWeatherForecast = function(urlApi) {
@@ -211,7 +223,7 @@ const getWeatherForecast = function(urlApi) {
       let eveningTemperatures;
       const today = new Date().getDay();
       const forecastDays = [];
-
+      
       forecastDays[0] = filterForecast(data, today, 1);
       forecastDays[1] = filterForecast(data, today, 2);
       forecastDays[2] = filterForecast(data, today, 3);
@@ -223,6 +235,7 @@ const getWeatherForecast = function(urlApi) {
       dayTemperatures = getAverageTemp(forecastDays, 9, 12, 15);
       eveningTemperatures = getAverageTemp(forecastDays, 18, 21, 0);
 
+      // number '4' in the below function means 12 noon
       getAndAssignForecastDesc(forecastDays, 4);
 
       assignTemp(morningTempEle, morningTemperatures);
@@ -234,7 +247,6 @@ const getWeatherForecast = function(urlApi) {
 }
 
 //getCurrentLocation();
-
 document.getElementById('submitButton').addEventListener('click', () => {
   const locationInput = document.getElementById('location');
   const cityName = document.getElementById('cityName').value;
@@ -250,3 +262,34 @@ document.getElementById('submitButton').addEventListener('click', () => {
     getCurrentLocation();
   }
 });
+
+////////////////////////
+
+const getWeatherSVGIcon = function(weatherDataIcon) {
+  const sun =
+    `<svg width="235" height="235" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+      <g>
+        <title>Sunlights</title>
+        <circle stroke="#000000" id="svg_22" r="100" cy="120.5" cx="106.5" opacity="0.3" fill-opacity="0.8" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f9fc55"/>
+        <circle id="svg_1" stroke="#000000" r="80" cy="120.5" cx="106.5" opacity="0.3" fill-opacity="0.8" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f9fc55"/>
+      </g>
+      <g>
+        <title>Sun</title>
+        <circle stroke="#000000" id="svg_8" r="60" cy="120.5" cx="106.5" opacity="0.95" stroke-opacity="0.8" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#f9fc55"/>
+        <ellipse fill="#f9fc55" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" stroke-opacity="0.8" cx="-349.5" cy="51" id="svg_2"/>
+      </g>
+    </svg>`;
+
+  const icons = {
+    '01d': sun
+  }
+
+  const weatherIconElement = document.querySelector('.weather__icon');
+  console.log(weatherIconElement);
+
+  if (typeof weatherDataIcon === 'object') {
+    console.log(icons[weatherDataIcon]);
+    console.log(weatherDataIcon);
+    return icons[weatherDataIcon];
+  }
+}

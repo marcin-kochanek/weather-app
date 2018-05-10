@@ -22,14 +22,20 @@ body {
   align-items: center;
   justify-content: center; }
 
-.color--rain {
-  background-image: linear-gradient(to bottom, #125995, #2d6ea4, #4583b2, #5d98bf, #77adcd);
-  background-image: url(icons/skyinthnight.jpg);
-  background-position: center;
-  background-size: cover; }
+.color--rainly {
+  background-color: #2A3259; }
+
+.color--day {
+  background-color: #579CE9; }
 
 .color--sun {
-  background-image: linear-gradient(to bottom, #f24b90, #f85782, #fa6577, #fa736d, #f78167); }
+  background-color: #fcad54; }
+
+.color--night {
+  /*background-image: url(icons/images/skyinthnight.jpg);
+    background-position: center;
+    background-size: cover;*/
+  background-color: #01051C; }
 
 .first-heading {
   font-size: 3.8rem;
@@ -79,6 +85,8 @@ body {
   border-radius: 10px 0 0 10px;
   padding: 30px 35px;
   color: #F7F7F7;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,7 +100,8 @@ body {
   .weather__search {
     display: flex;
     justify-content: space-between;
-    background-color: transparent; }
+    background-color: transparent;
+    z-index: 100; }
   .weather__search-button {
     border: none;
     transition: all .3s;
@@ -114,7 +123,7 @@ body {
     height: 3rem;
     width: 3rem;
     -webkit-mask-size: cover;
-    -webkit-mask-image: url(icons/search.svg);
+    -webkit-mask-image: url(icons/svg_icons/search.svg);
     display: inline-flex;
     align-items: center; }
   .weather__today-info {
@@ -127,7 +136,11 @@ body {
     text-align: center;
     color: #f7f7f7; }
   .weather__icon svg {
-    margin: 2rem 0; }
+    margin: 2rem 0;
+    transform: scale(1.6);
+    position: absolute;
+    top: 1.5rem;
+    right: -4rem; }
   .weather__info {
     margin-bottom: 2rem;
     display: flex;
@@ -187,13 +200,13 @@ body {
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center; }
     .details__icon--sunrise {
-      -webkit-mask-image: url(icons/sunrise.svg); }
+      -webkit-mask-image: url(icons/svg_icons/sunrise.svg); }
     .details__icon--sunset {
-      -webkit-mask-image: url(icons/sunset.svg); }
+      -webkit-mask-image: url(icons/svg_icons/sunset.svg); }
     .details__icon--humidity {
-      -webkit-mask-image: url(icons/humidity.svg); }
+      -webkit-mask-image: url(icons/svg_icons/humidity.svg); }
     .details__icon--pressure {
-      -webkit-mask-image: url(icons/pressure.svg); }
+      -webkit-mask-image: url(icons/svg_icons/pressure.svg); }
 
 .forecast__list {
   padding: 4rem 2rem 0 2rem;
@@ -259,10 +272,11 @@ body {
 
 .search-menu-wrapper {
   min-width: 95rem;
+  z-index: 200;
   height: 90vh;
   border-radius: 10px;
   position: absolute;
-  background-image: url(icons/boy.jpg);
+  background-image: url(icons/images/boy.jpg);
   background-size: cover;
   background-position: center;
   display: flex;
