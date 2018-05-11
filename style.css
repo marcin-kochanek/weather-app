@@ -22,21 +22,6 @@ body {
   align-items: center;
   justify-content: center; }
 
-.color--rainly {
-  background-color: #2A3259; }
-
-.color--day {
-  background-color: #579CE9; }
-
-.color--sun {
-  background-color: #fcad54; }
-
-.color--night {
-  /*background-image: url(icons/images/skyinthnight.jpg);
-    background-position: center;
-    background-size: cover;*/
-  background-color: #01051C; }
-
 .first-heading {
   font-size: 3.8rem;
   padding-bottom: 6rem;
