@@ -1,34 +1,5 @@
- // CHANGING THE SCREENS
-let turnOffRequired = function() {
-  let citySelektor = document.getElementById("cityName");
-  let destinationElement = document.getElementById("destination");
-  let locationElement = document.getElementById("location");
-
-  if (destinationElement.checked) {
-    citySelektor.required = true;
-  } else if (locationElement.checked) {
-    citySelektor.required = false;
-  }
-};
-
-/*document.getElementById('submitButton').addEventListener('click', () => {
-  let citySelektor = document.getElementById("cityName");
-  let destinationElement = document.getElementById("destination");
-  let locationElement = document.getElementById("location");
-  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
-
-  if (destinationElement.checked) {
-    citySelektor.required = true;
-  } else if (locationElement.checked) {
-    citySelektor.required = false;
-  }
-
-  welcomeScreen[0].className += " inactive";
-});*/
-
-
 // SVG icons
-const getWeatherSVGIcon = function(weatherDataIcon) {
+const getWeatherSVGIcon = (weatherDataIcon) => {
   const sun =
     `<svg width="235" height="235" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
       <g>
@@ -531,13 +502,13 @@ const getWeatherSVGIcon = function(weatherDataIcon) {
   document.querySelector('.weather__full-date').innerHTML = `${currentMonth} ${currentDate}`;
 }());
 
-const assignTemp = function(nodeEle, tempsArr) {
+const assignTemp = (nodeEle, tempsArr) => {
   nodeEle.forEach((el, index) => {
     el.innerHTML = `${tempsArr[index]}°`;
   });
 };
 
-const assignDay = function(nodeEle) {
+const assignDay = (nodeEle) => {
   //const WEEK_DAYS_SHORT = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
   const WEEK_DAYS = [`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`];
   const today = new Date().getDay();
@@ -548,14 +519,14 @@ const assignDay = function(nodeEle) {
   });
 };
 
-const convertUTC = function(date) {
+const convertUTC = (date) => {
   const today = new Date(date * 1000);
  
   //set the options to get rid of the seconds
   return today.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 };
 
-const filterForecast = function(output, today, iteration) {
+const filterForecast = (output, today, iteration) => {
   return output.list.filter((li) => {
     const filteredDay = new Date(li.dt_txt).getDay();
     const forecastedDay = ((today + iteration) % 7);
@@ -566,7 +537,7 @@ const filterForecast = function(output, today, iteration) {
   });
 };
 
-const getAverageTemp = function(arr, h1, h2, h3) {
+const getAverageTemp = (arr, h1, h2, h3) => {
   const avgTempArr = [];
 
   arr.forEach((el) => {
@@ -584,7 +555,7 @@ const getAverageTemp = function(arr, h1, h2, h3) {
   return avgTempArr;
 };
 
-const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
+const getAndAssignForecastDesc = (arr, timeOfTheDay) => {
   const forecastDescArr = [];
   const nodeEle = document.querySelectorAll('.forecast__desc'); 
 
@@ -607,7 +578,7 @@ const getAndAssignForecastDesc = function(arr, timeOfTheDay) {
   });
 };
 
-const getWeather = function(urlApi) {
+const getWeather = (urlApi) => {
   const cityName = document.getElementById('cityName').value;
   const currentTemp = document.querySelector('.weather__info--temp');
   const currentDesc = document.querySelector('.weather__info--desc');
@@ -635,7 +606,7 @@ const getWeather = function(urlApi) {
   getWeatherSVGIcon(storedWeatherData);
 };
 
-const getWeatherForecast = function(urlApi) {
+const getWeatherForecast = (urlApi) => {
   const nameOfTheDays = document.querySelectorAll('.forecast__day');
   const morningTempEle = document.querySelectorAll('.forecast__temp--morning');
   const dayTempEle = document.querySelectorAll('.forecast__temp--day');
@@ -674,11 +645,11 @@ const getWeatherForecast = function(urlApi) {
 };
 
 // GEOLOCATION
-const codeLatLng = function(lat, lng) {
+const codeLatLng = (lat, lng) => {
   const latlng = new google.maps.LatLng(lat, lng);
   const geocoder = new google.maps.Geocoder();
 
-  geocoder.geocode({'location': latlng}, function(results, status) {
+  geocoder.geocode({'location': latlng}, (results, status) => {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[0] && results[1]) {
         const city = results[1].address_components[0].long_name;
@@ -711,7 +682,7 @@ const codeLatLng = function(lat, lng) {
   });
 };
 
-const getCurrentLocation = function() {
+const getCurrentLocation = () => {
   const geo = navigator.geolocation;
 
   if (geo) {
@@ -736,40 +707,28 @@ const getCurrentLocation = function() {
   }
 };
 
-//getCurrentLocation();
-/*document.getElementById('submitButton').addEventListener('click', () => {
-  const destinationInput = document.getElementById('destination');
-  const cityName = document.getElementById('cityName').value;
-  const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`;
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`;
+/*document.getElementById('submitButton').addEventListener('keyup', (event) => {
+  if(event.key !== "Enter") return;
 
-  const citySelektor = document.getElementById("cityName");
-  //const destinationElement = document.getElementById("destination");
-  const locationElement = document.getElementById("location");
-  const welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
-  
-  if (destinationInput.checked) {
-    citySelektor.required = true;
-
-    getWeather(weatherUrl);
-    getWeatherForecast(forecastUrl);
-
-    document.querySelector('.weather__info--city').innerHTML = cityName;
-  } else if (locationElement.checked) {
-    citySelektor.required = false;
-    getCurrentLocation();
-  }
-
-  welcomeScreen[0].className += " inactive";
+  console.log(this);
+  document.getElementById('submitButton').click(); // Things you want to do.
+  event.preventDefault(); // No need to `return false;`.
 });*/
 
-document.querySelector('#location').addEventListener('change', () => {
+document.querySelector('#location').addEventListener('change', (event) => {
   getCurrentLocation();
+
+  document.addEventListener('keypress', (event) => {
+    if(event.key !== "Enter") return;
+
+    document.getElementById('submitButton').click();
+    document.getElementById('cityName').value = '';
+    event.preventDefault();
+  });
 });
 
 document.querySelector('#cityName').addEventListener('change', () => {
-  const cityName = document.getElementById('cityName').value;
+  let cityName = document.getElementById('cityName').value;
   const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
   const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${myWeatherApi}`;
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`;
@@ -777,6 +736,13 @@ document.querySelector('#cityName').addEventListener('change', () => {
   document.querySelector('.weather__info--city').innerHTML = cityName;
   getWeather(weatherUrl);
   getWeatherForecast(forecastUrl);
+
+  document.addEventListener('keypress', (event) => {
+    if(event.key !== "Enter") return;
+  
+    document.getElementById('submitButton').click();
+    event.preventDefault();
+  });
 });
 
 document.getElementById('submitButton').addEventListener('click', () => {
@@ -786,5 +752,7 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
 document.querySelector('.weather__search-button').addEventListener('click', () => {
   let welcomeScreenChanged = document.getElementsByClassName('search-menu-wrapper inactive');
+  document.getElementById('cityName').value = '';
+  
   welcomeScreenChanged[0].className = "search-menu-wrapper";
 });
