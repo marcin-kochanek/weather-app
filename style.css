@@ -302,7 +302,6 @@ body {
   color: inherit;
   display: block;
   font-size: 1.5rem;
-  padding: 1.5rem 2rem;
   border: none;
   border-radius: 2px;
   border-bottom: 3px solid transparent;
@@ -313,15 +312,20 @@ body {
   .form__input--radio {
     display: none; }
   .form__input--text {
+    height: 0;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(-20px);
     -webkit-transition: all .8s;
-    transition: all .8s; }
+    transition: all .8s;
+    padding: 0; }
   .form__input--radio:checked + .form__label--radio .form__button--radio::after {
     opacity: 1; }
   .form__input--radio#destination:checked ~ .form__input--text {
     opacity: 1;
-    transform: translateY(0); }
+    height: auto;
+    transform: translateY(0);
+    padding: 1.5rem 2rem; }
 
 .form__label {
   padding-bottom: 2rem; }
