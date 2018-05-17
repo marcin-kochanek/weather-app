@@ -108,7 +108,7 @@ body {
     height: 3rem;
     width: 3rem;
     -webkit-mask-size: cover;
-    -webkit-mask-image: url(icons/svg_icons/search.svg);
+    -webkit-mask-image: url(icons/svgs/search.svg);
     display: inline-flex;
     align-items: center; }
   .weather__today-info {
@@ -185,13 +185,13 @@ body {
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center; }
     .details__icon--sunrise {
-      -webkit-mask-image: url(icons/svg_icons/sunrise.svg); }
+      -webkit-mask-image: url(icons/svgs/sunrise.svg); }
     .details__icon--sunset {
-      -webkit-mask-image: url(icons/svg_icons/sunset.svg); }
+      -webkit-mask-image: url(icons/svgs/sunset.svg); }
     .details__icon--humidity {
-      -webkit-mask-image: url(icons/svg_icons/humidity.svg); }
+      -webkit-mask-image: url(icons/svgs/humidity.svg); }
     .details__icon--pressure {
-      -webkit-mask-image: url(icons/svg_icons/pressure.svg); }
+      -webkit-mask-image: url(icons/svgs/pressure.svg); }
 
 .forecast__list {
   padding: 4rem 2rem 0 2rem;

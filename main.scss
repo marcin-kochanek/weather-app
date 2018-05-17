@@ -130,14 +130,13 @@ body {
     &:active{
       transform: translateY(3px);
     }
-
   }
 
   &__search-icon {
     height: 3rem;
     width: 3rem;
     -webkit-mask-size: cover;
-    -webkit-mask-image: url(icons/svg_icons/search.svg);
+    -webkit-mask-image: url(icons/svgs/search.svg);
 
     display: inline-flex;
     align-items: center;
@@ -256,16 +255,16 @@ body {
     -webkit-mask-position: center;
 
     &--sunrise {
-      -webkit-mask-image: url(icons/svg_icons/sunrise.svg);
+      -webkit-mask-image: url(icons/svgs/sunrise.svg);
     }
     &--sunset {
-      -webkit-mask-image: url(icons/svg_icons/sunset.svg);
+      -webkit-mask-image: url(icons/svgs/sunset.svg);
     }
     &--humidity {
-      -webkit-mask-image: url(icons/svg_icons/humidity.svg);
+      -webkit-mask-image: url(icons/svgs/humidity.svg);
     }
     &--pressure {
-      -webkit-mask-image: url(icons/svg_icons/pressure.svg);
+      -webkit-mask-image: url(icons/svgs/pressure.svg);
     }
   }
 }

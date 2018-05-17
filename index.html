@@ -10,13 +10,33 @@
 </head>
 <body>
   <div class="weather-app">
+    <div class="search-menu-wrapper">
+      <div class="search-menu">
+        <h1 class="first-heading">Check the weather before you go.</h1>
+        <form action="#" class="form">
+          <fieldset>
+            <div class="form__group">
+              <input class="form__input form__input--radio" type="radio" id="location" name="weather-place" value="location" checked>
+              <label class="form__label form__label--radio" for="location">
+                <span class="form__button--radio"></span>
+                <span class="form__label--text">at your location</span>
+              </label>
+              <input class="form__input form__input--radio" type="radio" id="destination" name="weather-place" value="destination">
+              <label class="form__label form__label--radio" for="destination">
+                <span class="form__button--radio"></span>
+                <span class="form__label--text">at your destination</span>
+              </label>
+              <input class="form__input form__input--text" type="text" id="cityName" placeholder="City name" autocomplete="on" required="false">
+              <button class="form__button" type="button" id="submitButton">Check weather</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <div class="weather bg-color">
       <div class="weather__search">
         <button class="weather__search-button">
           <div class="weather__search-icon bg-color"></div>
-          <!--<svg class="weather__search-icon">
-            <use xlink:href="icons/menu-icons.svg#icon-search"></use>
-          </svg>-->
         </button>
         <div class="weather__today-info">
             <span class="weather__time">6:51</span>
@@ -134,29 +154,6 @@
             </pan>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="search-menu-wrapper">
-      <div class="search-menu">
-        <h1 class="first-heading">Check the weather before you go.</h1>
-        <form action="#" class="form">
-          <fieldset>
-            <div class="form__group">
-              <input class="form__input form__input--radio" type="radio" id="location" name="weather-place" value="location" checked>
-              <label class="form__label form__label--radio" for="location">
-                <span class="form__button--radio"></span>
-                <span class="form__label--text">at your location</span>
-              </label>
-              <input class="form__input form__input--radio" type="radio" id="destination" name="weather-place" value="destination">
-              <label class="form__label form__label--radio" for="destination">
-                <span class="form__button--radio"></span>
-                <span class="form__label--text">at your destination</span>
-              </label>
-              <input class="form__input form__input--text" type="text" id="cityName" placeholder="City name" autocomplete="on" required="false">
-              <button class="form__button" type="submit" id="submitButton">Check weather</button>
-            </div>
-          </fieldset>
-        </form>
       </div>
     </div>
   </div>
