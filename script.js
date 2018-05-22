@@ -455,7 +455,6 @@ const getWeatherSVGIcon = (weatherDataIcon) => {
 
     weatherIconElement.innerHTML = weatherIcons[icon];
     console.log(`Icon symbol: ${icon}`);
-    console.log(icon);
 
     const bgElements = document.querySelectorAll('.bg-color');
     bgElements.forEach((element) => {
@@ -578,8 +577,24 @@ const getAndAssignForecastDesc = (arr, timeOfTheDay) => {
   });
 };
 
+const makeClassInactive = () => {
+  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
+  welcomeScreen[0].className += " inactive";
+};
+
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    document.getElementById('submitButton').addEventListener('click', makeClassInactive);
+    return response.json()
+  } else {
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error
+  }
+};
+
 const getWeather = (urlApi) => {
-  const cityName = document.getElementById('cityName').value;
+  const currentCity = document.querySelector('.weather__info--city');
   const currentTemp = document.querySelector('.weather__info--temp');
   const currentDesc = document.querySelector('.weather__info--desc');
   const sunrise = document.querySelector('.details__sunrise');
@@ -588,11 +603,9 @@ const getWeather = (urlApi) => {
   const pressure = document.querySelector('.details__pressure');
   
   const storedWeatherData = fetch(urlApi)
-    .then((res) => res.json())
-    .then((data) => {
-      const weatherData = data;
-      console.log(weatherData);
-
+    .then(checkStatus)
+    .then((data) => {     
+      currentCity.innerHTML = data.name;
       currentTemp.innerHTML = `${data.main.temp.toFixed()}<span class='degree-symbol'>°</span>`;
       currentDesc.innerHTML = data.weather[0].description;
       sunrise.innerHTML = convertUTC(data.sys.sunrise);
@@ -600,7 +613,11 @@ const getWeather = (urlApi) => {
       humidity.innerHTML = data.main.humidity;
       pressure.innerHTML = data.main.pressure.toFixed();
 
-      return weatherData;
+      return data;
+    })
+    .catch((error) => {
+      document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
+      console.log('Nie istnieje taka lokalizacja, stąd nie można wyświetlić obecnej pogody.');
     });
 
   getWeatherSVGIcon(storedWeatherData);
@@ -614,7 +631,7 @@ const getWeatherForecast = (urlApi) => {
   const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
 
   const storedForecastData = fetch(urlApi)
-    .then((res) => res.json())
+    .then(checkStatus)
     .then((data) => {
       let morningTemperatures;
       let dayTemperatures;
@@ -641,45 +658,11 @@ const getWeatherForecast = (urlApi) => {
       assignTemp(eveningTempEle, eveningTemperatures);
 
       assignDay(nameOfTheDays);
+    })
+    .catch(error => {
+      document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
+      console.log('Nie istnieje taka lokalizacja, stąd nie można wyświetlić prognozy pogody dla 5 dni.');
     });
-};
-
-// GEOLOCATION
-const codeLatLng = (lat, lng) => {
-  const latlng = new google.maps.LatLng(lat, lng);
-  const geocoder = new google.maps.Geocoder();
-
-  geocoder.geocode({'location': latlng}, (results, status) => {
-    if (status == google.maps.GeocoderStatus.OK) {
-      if (results[0] && results[1]) {
-        const city = results[1].address_components[0].long_name;
-        document.querySelector('.weather__info--city').innerHTML = city;
-
-        //use first element of results table to show the full address
-        console.log(`Your address: ${results[0].formatted_address}`);
-        
-        /*
-        //find city name
-          for (let i=0; i < results[0].address_components.length; i++) {
-            for (let b=0; b < results[0].address_components[i].types.length; b++) {
-              //there are different types that might hold a city admin_area_lvl_1/administrative_area_level_2 usually does in come cases looking for sublocality type will be more appropriate
-              if (results[0].address_components[i].types[b] == "locality") {
-                //this is the object you are looking for
-                city = results[0].address_components[i];
-                break;
-              }
-            }
-          }
-          document.querySelector('.weather__info--city').innerHTML = city.long_name;
-          */
-
-      } else {
-        console.log("No results found");
-      }
-    } else {
-      console.log("Geocoder failed due to: " + status);
-    }
-  });
 };
 
 const getCurrentLocation = () => {
@@ -696,7 +679,7 @@ const getCurrentLocation = () => {
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${myWeatherApi}`;
 
-      codeLatLng(lat, lon);
+      //codeLatLng(lat, lon);
       getWeather(weatherUrl);
       getWeatherForecast(forecastUrl);
 
@@ -707,24 +690,24 @@ const getCurrentLocation = () => {
   }
 };
 
-/*document.getElementById('submitButton').addEventListener('keyup', (event) => {
-  if(event.key !== "Enter") return;
-
-  console.log(this);
-  document.getElementById('submitButton').click(); // Things you want to do.
-  event.preventDefault(); // No need to `return false;`.
-});*/
-
-document.querySelector('#location').addEventListener('change', (event) => {
-  getCurrentLocation();
-
+const keypressEnter = () => {
   document.addEventListener('keypress', (event) => {
     if(event.key !== "Enter") return;
-
+  
     document.getElementById('submitButton').click();
-    document.getElementById('cityName').value = '';
     event.preventDefault();
   });
+};
+
+document.querySelector('#location').addEventListener('change', () => {
+  getCurrentLocation();
+  keypressEnter();
+
+  document.getElementById('cityName').value = '';
+});
+
+document.querySelector('#destination').addEventListener('change', () => {
+  document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
 });
 
 document.querySelector('#cityName').addEventListener('change', () => {
@@ -734,25 +717,18 @@ document.querySelector('#cityName').addEventListener('change', () => {
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${myWeatherApi}`;
 
   document.querySelector('.weather__info--city').innerHTML = cityName;
+  
   getWeather(weatherUrl);
   getWeatherForecast(forecastUrl);
-
-  document.addEventListener('keypress', (event) => {
-    if(event.key !== "Enter") return;
-  
-    document.getElementById('submitButton').click();
-    event.preventDefault();
-  });
+  keypressEnter();
 });
 
-document.getElementById('submitButton').addEventListener('click', () => {
+/*document.getElementById('submitButton').addEventListener('click', () => {
   let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
   welcomeScreen[0].className += " inactive";
-});
+});*/
 
 document.querySelector('.weather__search-button').addEventListener('click', () => {
   let welcomeScreenChanged = document.getElementsByClassName('search-menu-wrapper inactive');
-  document.getElementById('cityName').value = '';
-  
   welcomeScreenChanged[0].className = "search-menu-wrapper";
 });
