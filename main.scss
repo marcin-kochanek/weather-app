@@ -64,6 +64,9 @@ body {
   font-weight: 300;
 }
 
+///////////////
+//// APP /////
+
 .weather-app {
   height: 90vh;
   max-width: 120rem;
@@ -515,6 +518,95 @@ body {
         transition: opacity .3s;
       }
     }
+  }
+}
+
+.preloader {
+  position: fixed;
+  height: 90vh;
+  min-width: 95rem;
+  background-color: #fff;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 350ms ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+
+    &--cloud1 {
+      height: 120px;
+      width: 120px;
+      position: relative;
+      z-index: 300;
+
+      animation-name: move1;
+      animation-duration: 3000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    &--cloud2 {
+      height: 100px;
+      width: 100px;
+      position: relative;
+      top: -1rem;
+      z-index: 200;
+
+      animation-name: move2;
+      animation-duration: 3000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      //animation-delay: 500ms;
+    }
+  }
+  
+  &__text {
+    font-size: 1.8rem;
+  }
+}
+
+.preloader__hiding {
+  opacity: 0
+}
+
+.preloader__hidden {
+  display: none;
+}
+
+@keyframes move1 {
+  0% {
+    left: 3rem;
+  }
+
+  50% {
+    left: 0;
+  }
+
+  100% {
+    left: 3rem;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    left: -3rem;
+  }
+
+  50% {
+    left: 0;
+  }
+
+  100% {
+    left: -3rem;
   }
 }
 

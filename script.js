@@ -723,12 +723,17 @@ document.querySelector('#cityName').addEventListener('change', () => {
   keypressEnter();
 });
 
-/*document.getElementById('submitButton').addEventListener('click', () => {
-  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
-  welcomeScreen[0].className += " inactive";
-});*/
-
 document.querySelector('.weather__search-button').addEventListener('click', () => {
   let welcomeScreenChanged = document.getElementsByClassName('search-menu-wrapper inactive');
   welcomeScreenChanged[0].className = "search-menu-wrapper";
+});
+
+window.addEventListener('load', () => {
+  const preloaderEle = document.querySelector('.preloader');
+  preloaderEle.classList.add('preloader__hiding');
+
+  preloaderEle.addEventListener('transitionend', function() {
+    this.classList.remove('preloader__hiding');
+    this.classList.add("preloader__hidden");
+  });
 });
