@@ -270,6 +270,9 @@ body {
 .inactive {
   display: none; }
 
+.active {
+  opacity: 1 !important; }
+
 .search-menu {
   position: relative;
   height: 100%;
@@ -319,6 +322,10 @@ body {
     -webkit-transition: all .8s;
     transition: all .8s;
     padding: 0; }
+    .form__input--text:focus {
+      outline: none;
+      border-bottom: 3px solid #555;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
   .form__input--radio:checked + .form__label--radio .form__button--radio::after {
     opacity: 1; }
   .form__input--radio#destination:checked ~ .form__input--text {
@@ -328,7 +335,7 @@ body {
     padding: 1.5rem 2rem; }
 
 .form__label {
-  padding-bottom: 2rem; }
+  padding-bottom: 1.5rem; }
   .form__label--radio {
     font-size: 1.6rem;
     cursor: pointer;
@@ -378,6 +385,15 @@ body {
       opacity: 0;
       -webkit-transition: opacity .3s;
       transition: opacity .3s; }
+
+.form__error {
+  height: 1rem;
+  color: red;
+  font-size: 1rem;
+  display: block;
+  font-weight: 500;
+  padding-left: 4rem;
+  opacity: 0; }
 
 .preloader {
   position: fixed;

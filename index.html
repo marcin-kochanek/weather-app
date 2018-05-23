@@ -31,13 +31,15 @@
               <label class="form__label form__label--radio" for="location">
                 <span class="form__button--radio"></span>
                 <span class="form__label--text">at your location</span>
+                <span class="form__error"></span>
               </label>
               <input class="form__input form__input--radio" type="radio" id="destination" name="weather-place" value="destination">
               <label class="form__label form__label--radio" for="destination">
                 <span class="form__button--radio"></span>
                 <span class="form__label--text">at your destination</span>
+                <span class="form__error"></span>
               </label>
-              <input class="form__input form__input--text" type="text" id="cityName" placeholder="City name" autocomplete="on" required="false">
+              <input class="form__input form__input--text" type="text" id="cityName" placeholder="City name" autocomplete="on" required>
               <button class="form__button" type="button" id="submitButton">Check weather</button>
             </div>
           </fieldset>

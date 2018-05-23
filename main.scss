@@ -379,6 +379,10 @@ body {
   display: none;
 }
 
+.active {
+  opacity: 1 !important;
+}
+
 .search-menu {
   position: relative;
   height: 100%;
@@ -442,6 +446,12 @@ body {
       -webkit-transition: all .8s;
       transition: all .8s;
       padding: 0;
+
+      &:focus {
+        outline: none;
+        border-bottom: 3px solid #555;
+        box-shadow: 0 1rem 2rem rgba(#000, .1);
+      }
     }   
     
     &--radio:checked + .form__label--radio .form__button--radio::after {
@@ -457,7 +467,7 @@ body {
   }
 
   &__label {
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 
     &--radio {
       font-size: 1.6rem;
@@ -518,6 +528,16 @@ body {
         transition: opacity .3s;
       }
     }
+  }
+
+  &__error {
+    height: 1rem;
+    color: red;
+    font-size: 1rem;
+    display: block;
+    font-weight: 500;
+    padding-left: 4rem;
+    opacity: 0;
   }
 }
 

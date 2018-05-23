@@ -578,8 +578,10 @@ const getAndAssignForecastDesc = (arr, timeOfTheDay) => {
 };
 
 const makeClassInactive = () => {
-  let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
-  welcomeScreen[0].className += " inactive";
+  //let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
+  //welcomeScreen[0].className += " inactive";
+  let welcomeScreen = document.querySelector('.search-menu-wrapper');
+  welcomeScreen.classList.add('inactive');
 };
 
 const checkStatus = (response) => {
@@ -604,7 +606,9 @@ const getWeather = (urlApi) => {
   
   const storedWeatherData = fetch(urlApi)
     .then(checkStatus)
-    .then((data) => {     
+    .then((data) => {
+      console.log(`Connected with Weather API for current weather.`);
+
       currentCity.innerHTML = data.name;
       currentTemp.innerHTML = `${data.main.temp.toFixed()}<span class='degree-symbol'>°</span>`;
       currentDesc.innerHTML = data.weather[0].description;
@@ -616,8 +620,12 @@ const getWeather = (urlApi) => {
       return data;
     })
     .catch((error) => {
+      const errorOutputs = document.getElementsByClassName("form__error");
+      errorOutputs[1].classList.add('active');
+      errorOutputs[1].innerHTML = 'Sorry, no position available';
+      console.log('Sorry, no position available.');
+
       document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
-      console.log('Nie istnieje taka lokalizacja, stąd nie można wyświetlić obecnej pogody.');
     });
 
   getWeatherSVGIcon(storedWeatherData);
@@ -633,6 +641,8 @@ const getWeatherForecast = (urlApi) => {
   const storedForecastData = fetch(urlApi)
     .then(checkStatus)
     .then((data) => {
+      console.log(`Connected with Weather API for 5day forecast.`);
+
       let morningTemperatures;
       let dayTemperatures;
       let eveningTemperatures;
@@ -660,16 +670,21 @@ const getWeatherForecast = (urlApi) => {
       assignDay(nameOfTheDays);
     })
     .catch(error => {
+      const errorOutputs = document.getElementsByClassName("form__error");
+      errorOutputs[1].classList.add('active');
+      errorOutputs[1].innerHTML = 'Sorry, no position available';
+      console.log('Sorry, no position available.');
+
       document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
-      console.log('Nie istnieje taka lokalizacja, stąd nie można wyświetlić prognozy pogody dla 5 dni.');
     });
 };
 
 const getCurrentLocation = () => {
+  const errorOutputs = document.getElementsByClassName("form__error");
   const geo = navigator.geolocation;
 
   if (geo) {
-    console.log(`Usługa geolokalizacji jest dostępna!`);
+    console.log(`Geolocation services are available`);
 
     geo.getCurrentPosition((location) => {
       const myWeatherApi = `4876b17d9f9309045bb04bc91a1f6446`;
@@ -683,10 +698,16 @@ const getCurrentLocation = () => {
       getWeather(weatherUrl);
       getWeatherForecast(forecastUrl);
 
-      console.log(`Twoje współrzędne to: ${lat}, ${lon}`);
+      console.log(`Your location: latitude is ${lat}°, longitude is ${lon}°`);
+    }, () => {
+      errorOutputs[0].innerHTML = "Unable to retrieve your location";
+      errorOutputs[0].classList.add('active');
+      console.log(`Unable to retrieve your location`);
     });
   } else {
-    console.log(`Usługa geolokalizacji nie jest dostępna`);
+    errorOutputs[0].innerHTML = "Geolocation is not supported by your browser";
+    errorOutputs[0].classList.add('active');
+    console.log(`Geolocation is not supported by your browser`);
   }
 };
 
@@ -700,13 +721,19 @@ const keypressEnter = () => {
 };
 
 document.querySelector('#location').addEventListener('change', () => {
+  const errorOutputs = document.getElementsByClassName("form__error");
   getCurrentLocation();
   keypressEnter();
 
+  // clearing
+  errorOutputs[1].classList.remove('active');
   document.getElementById('cityName').value = '';
 });
 
 document.querySelector('#destination').addEventListener('change', () => {
+  const errorOutputs = document.getElementsByClassName("form__error");
+  errorOutputs[0].classList.remove('active'); 
+
   document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
 });
 
@@ -724,10 +751,23 @@ document.querySelector('#cityName').addEventListener('change', () => {
 });
 
 document.querySelector('.weather__search-button').addEventListener('click', () => {
-  let welcomeScreenChanged = document.getElementsByClassName('search-menu-wrapper inactive');
-  welcomeScreenChanged[0].className = "search-menu-wrapper";
+  const errorOutputs = document.getElementsByClassName("form__error");
+  const welcomeScreenChanged = document.querySelector('.search-menu-wrapper');
+  const destinationElement = document.getElementById("destination");
+  const locationElement = document.getElementById("location");
+
+  welcomeScreenChanged.classList.remove('inactive');
+
+  //clearing
+  destinationElement.checked = false;
+  locationElement.checked = false;
+
+  errorOutputs[1].classList.remove('active');  
+  document.getElementById('cityName').value = '';
 });
 
+/////////////////
+/// PRELOADER ///
 window.addEventListener('load', () => {
   const preloaderEle = document.querySelector('.preloader');
   preloaderEle.classList.add('preloader__hiding');
