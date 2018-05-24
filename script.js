@@ -448,15 +448,15 @@ const getWeatherSVGIcon = (weatherDataIcon) => {
     '50n': mist('#495073')
   };
 
-  weatherDataIcon.then(function(apiOutput) {
+  weatherDataIcon.then((apiOutput) => {
     const icon = apiOutput.weather[0].icon;
     const currentTemp = apiOutput.main.temp;
     const weatherIconElement = document.querySelector('.weather__icon');
-
-    weatherIconElement.innerHTML = weatherIcons[icon];
-    console.log(`Icon symbol: ${icon}`);
-
     const bgElements = document.querySelectorAll('.bg-color');
+
+    console.log(`SVG icon symbol: ${icon}`);
+    weatherIconElement.innerHTML = weatherIcons[icon];
+    
     bgElements.forEach((element) => {
       const nightly = '#01051C';
       const daily = '#579CE9';
@@ -473,6 +473,8 @@ const getWeatherSVGIcon = (weatherDataIcon) => {
         element.style.backgroundColor = stormy;
       } 
     });
+  }).catch((error) => {
+    console.log(`No SVG`);
   });
 };
 
@@ -483,7 +485,8 @@ const getWeatherSVGIcon = (weatherDataIcon) => {
   const MONTHS = [`jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`];
 
   const addZero = (current) => {
-    return current = (current < 10) ? '0'+current : current;
+    current = (current < 10) ? '0'+current : current;
+    return current;
   };
 
   const today = new Date();
@@ -577,6 +580,21 @@ const getAndAssignForecastDesc = (arr, timeOfTheDay) => {
   });
 };
 
+const showDestinationErrorMsg = (error) => {
+  const errorOutputs = document.getElementsByClassName("form__error");
+  errorOutputs[1].classList.add('active');
+  errorOutputs[1].innerHTML = 'Sorry, no position available';
+  console.log(`Sorry, no position available. ${error}`);
+
+  document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
+};
+
+const hideDestinationErrorMsg = () => {
+  const errorOutputs = document.getElementsByClassName("form__error");
+  errorOutputs[1].classList.remove('active');
+  errorOutputs[1].innerHTML = '';
+};
+
 const makeClassInactive = () => {
   //let welcomeScreen = document.getElementsByClassName('search-menu-wrapper');
   //welcomeScreen[0].className += " inactive";
@@ -587,11 +605,11 @@ const makeClassInactive = () => {
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     document.getElementById('submitButton').addEventListener('click', makeClassInactive);
-    return response.json()
+    return response.json();
   } else {
     const error = new Error(response.statusText);
     error.response = response;
-    throw error
+    throw error;
   }
 };
 
@@ -607,6 +625,7 @@ const getWeather = (urlApi) => {
   const storedWeatherData = fetch(urlApi)
     .then(checkStatus)
     .then((data) => {
+      hideDestinationErrorMsg();
       console.log(`Connected with Weather API for current weather.`);
 
       currentCity.innerHTML = data.name;
@@ -620,12 +639,7 @@ const getWeather = (urlApi) => {
       return data;
     })
     .catch((error) => {
-      const errorOutputs = document.getElementsByClassName("form__error");
-      errorOutputs[1].classList.add('active');
-      errorOutputs[1].innerHTML = 'Sorry, no position available';
-      console.log('Sorry, no position available.');
-
-      document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
+      showDestinationErrorMsg(error);
     });
 
   getWeatherSVGIcon(storedWeatherData);
@@ -641,13 +655,14 @@ const getWeatherForecast = (urlApi) => {
   const storedForecastData = fetch(urlApi)
     .then(checkStatus)
     .then((data) => {
-      console.log(`Connected with Weather API for 5day forecast.`);
-
       let morningTemperatures;
       let dayTemperatures;
       let eveningTemperatures;
       const today = new Date().getDay();
       const forecastDays = [];
+
+      hideDestinationErrorMsg();
+      console.log(`Connected with Weather API for 5day forecast.`);
       
       forecastDays[0] = filterForecast(data, today, 1);
       forecastDays[1] = filterForecast(data, today, 2);
@@ -670,12 +685,7 @@ const getWeatherForecast = (urlApi) => {
       assignDay(nameOfTheDays);
     })
     .catch(error => {
-      const errorOutputs = document.getElementsByClassName("form__error");
-      errorOutputs[1].classList.add('active');
-      errorOutputs[1].innerHTML = 'Sorry, no position available';
-      console.log('Sorry, no position available.');
-
-      document.getElementById('submitButton').removeEventListener('click', makeClassInactive);
+      showDestinationErrorMsg(error);
     });
 };
 
@@ -773,6 +783,7 @@ window.addEventListener('load', () => {
   preloaderEle.classList.add('preloader__hiding');
 
   preloaderEle.addEventListener('transitionend', function() {
+    //using ES5 function because arrow functions do not have their own this (this comes from the surrounding lexical context)
     this.classList.remove('preloader__hiding');
     this.classList.add("preloader__hidden");
   });
